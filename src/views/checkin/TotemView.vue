@@ -29,7 +29,7 @@ const handleScan = async (qrcode: string) => {
   try {
     await checkinStore.autoatendimento(slug, qrcode)
     estado.value = 'sucesso'
-  } catch (err: any) {
+  } catch {
     estado.value = 'erro'
     mensagemErro.value = checkinStore.error || 'Erro ao realizar check-in'
 

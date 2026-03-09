@@ -1,5 +1,4 @@
 import sharp from 'sharp';
-import { writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -7,13 +6,11 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const publicDir = join(__dirname, '..', 'public');
 
 // Cores do tema BizzExpo
-const PRIMARY_COLOR = '#0047AB'; // Azul primário
 const TEXT_COLOR = '#FFFFFF';
 
 // Criar SVG do ícone
 function createIconSVG(size) {
   const fontSize = Math.floor(size * 0.5);
-  const padding = Math.floor(size * 0.1);
 
   return `
     <svg width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">

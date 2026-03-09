@@ -3,20 +3,23 @@ import Button from '@/components/ui/Button.vue'
 import Input from '@/components/ui/Input.vue'
 import FormField from '@/components/forms/FormField.vue'
 
+interface FormData {
+  nome_empresa: string
+  cnpj: string
+  nome_contato: string
+  email_contato: string
+  telefone: string
+  site: string
+  descricao: string
+}
+
 interface Props {
-  form: {
-    nome_empresa: string
-    cnpj: string
-    nome_contato: string
-    email_contato: string
-    telefone: string
-    site: string
-    descricao: string
-  }
   loading?: boolean
   errors?: Record<string, string[]>
   submitLabel?: string
 }
+
+const form = defineModel<FormData>('form', { required: true })
 
 const props = withDefaults(defineProps<Props>(), {
   loading: false,

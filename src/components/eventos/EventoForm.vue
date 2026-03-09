@@ -3,18 +3,21 @@ import Button from '@/components/ui/Button.vue'
 import Input from '@/components/ui/Input.vue'
 import FormField from '@/components/forms/FormField.vue'
 
+interface FormData {
+  nome: string
+  descricao: string
+  data_inicio: string
+  data_fim: string
+  local: string
+}
+
 interface Props {
-  form: {
-    nome: string
-    descricao: string
-    data_inicio: string
-    data_fim: string
-    local: string
-  }
   loading?: boolean
   errors?: Record<string, string[]>
   submitLabel?: string
 }
+
+const form = defineModel<FormData>('form', { required: true })
 
 const props = withDefaults(defineProps<Props>(), {
   loading: false,

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import type { Categoria, InscricaoForm } from '@/types'
 import FormField from '@/components/forms/FormField.vue'
 import Input from '@/components/ui/Input.vue'

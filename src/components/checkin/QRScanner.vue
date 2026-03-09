@@ -6,7 +6,7 @@ interface Props {
   paused?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   paused: false,
 })
 
@@ -45,7 +45,7 @@ const startScanner = async () => {
 
     isScanning.value = true
     errorMessage.value = null
-  } catch (err: any) {
+  } catch {
     errorMessage.value = 'Nao foi possivel acessar a camera. Verifique as permissoes.'
     emit('error', errorMessage.value)
   }
@@ -56,7 +56,7 @@ const stopScanner = async () => {
     try {
       await scanner.value.stop()
       isScanning.value = false
-    } catch (err) {
+    } catch {
       // Ignora erro ao parar scanner
     }
   }
@@ -66,7 +66,7 @@ const pauseScanner = async () => {
   if (scanner.value && isScanning.value) {
     try {
       await scanner.value.pause()
-    } catch (err) {
+    } catch {
       // Ignora erro
     }
   }
@@ -76,7 +76,7 @@ const resumeScanner = async () => {
   if (scanner.value && isScanning.value) {
     try {
       await scanner.value.resume()
-    } catch (err) {
+    } catch {
       // Ignora erro
     }
   }

@@ -15,7 +15,7 @@ export default defineConfigWithVueTs(
     files: ['**/*.{vue,ts,mts,tsx}'],
   },
 
-  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
+  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**', '**/scripts/**']),
 
   ...pluginVue.configs['flat/essential'],
   vueTsConfigs.recommended,
@@ -23,4 +23,15 @@ export default defineConfigWithVueTs(
   ...pluginOxlint.buildFromOxlintConfigFile('.oxlintrc.json'),
 
   skipFormatting,
+
+  // Regras customizadas
+  {
+    name: 'app/custom-rules',
+    rules: {
+      // Permitir nomes de componentes de uma palavra em componentes UI
+      'vue/multi-word-component-names': 'off',
+      // Permitir any em casos específicos (stores, catch blocks)
+      '@typescript-eslint/no-explicit-any': 'warn',
+    },
+  },
 )
