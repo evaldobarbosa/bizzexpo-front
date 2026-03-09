@@ -175,6 +175,13 @@ jobs:
           script: |
             cd /home/evaldobarbosa/bizzexpo/front
 
+            # Cria arquivo .env com variaveis necessarias
+            cat > .env << EOF
+            DOCKER_IMAGE=ghcr.io/${{ github.repository }}
+            FRONT_HOST=${{ vars.FRONT_HOST }}
+            TAG=production
+            EOF
+
             # Cria/atualiza arquivo de token
             echo "$GITHUB_TOKEN" > .github_token
             chmod 600 .github_token

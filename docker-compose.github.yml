@@ -1,12 +1,10 @@
-version: '3.8'
-
 services:
   front:
     image: ${DOCKER_IMAGE}:${TAG:-production}
     container_name: bizzexpo-front
     restart: unless-stopped
     networks:
-      - traefik
+      - proxymng
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.bizzexpo-front.rule=Host(`${FRONT_HOST}`)"
@@ -21,5 +19,5 @@ services:
       start_period: 10s
 
 networks:
-  traefik:
+  proxymng:
     external: true
