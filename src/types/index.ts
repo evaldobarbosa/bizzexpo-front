@@ -51,6 +51,7 @@ export interface Evento {
   status: 'rascunho' | 'pago' | 'publicado' | 'encerrado'
   created_at: string
   updated_at: string
+  expositores_count?: number
 }
 
 export interface Categoria {
