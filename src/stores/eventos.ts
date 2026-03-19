@@ -75,6 +75,16 @@ export const useEventosStore = defineStore('eventos', () => {
     return response.data.data
   }
 
+  async function marcarComoPago(id: string, valor: number, observacao?: string) {
+    const response = await api.patch(`/admin/eventos/${id}/pago`, { valor, observacao })
+    const index = eventos.value.findIndex((e) => e.id === id)
+    if (index !== -1) {
+      eventos.value[index] = response.data.data.evento
+    }
+    eventoAtual.value = response.data.data.evento
+    return response.data
+  }
+
   return {
     eventos,
     eventoAtual,
@@ -85,5 +95,6 @@ export const useEventosStore = defineStore('eventos', () => {
     updateEvento,
     deleteEvento,
     alterarStatus,
+    marcarComoPago,
   }
 })

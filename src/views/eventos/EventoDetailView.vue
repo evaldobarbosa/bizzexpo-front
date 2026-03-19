@@ -4,14 +4,25 @@ import { useRoute, useRouter } from 'vue-router'
 import AppLayout from '@/components/layout/AppLayout.vue'
 import Spinner from '@/components/ui/Spinner.vue'
 import { useEventosStore } from '@/stores/eventos'
+import { useAuthStore } from '@/stores/auth'
 
 const route = useRoute()
 const router = useRouter()
 const eventosStore = useEventosStore()
+const authStore = useAuthStore()
 
 const confirmDelete = ref(false)
 const statusLoading = ref(false)
 const linkCopiado = ref(false)
+
+// Modal de pagamento (admin)
+const showPagamentoModal = ref(false)
+const pagamentoForm = ref({
+  valor: '',
+  observacao: '',
+})
+const pagamentoLoading = ref(false)
+const pagamentoError = ref('')
 
 const linkEvento = computed(() => {
   if (!eventosStore.eventoAtual?.slug) return ''
@@ -67,13 +78,48 @@ async function handleStatusChange(newStatus: string) {
 function getNextStatus(currentStatus: string): string | null {
   switch (currentStatus) {
     case 'rascunho':
-      return 'pago'
+      return null // Somente admin pode marcar como pago via endpoint específico
     case 'pago':
       return 'publicado'
     case 'publicado':
       return 'encerrado'
     default:
       return null
+  }
+}
+
+// Verifica se admin pode marcar como pago
+const canMarkAsPaid = computed(() => {
+  return authStore.isAdmin && eventosStore.eventoAtual?.status === 'rascunho'
+})
+
+async function handleMarcarComoPago() {
+  if (!pagamentoForm.value.valor) {
+    pagamentoError.value = 'Informe o valor do pagamento'
+    return
+  }
+
+  const valor = parseFloat(pagamentoForm.value.valor.replace(',', '.'))
+  if (isNaN(valor) || valor <= 0) {
+    pagamentoError.value = 'Valor inválido'
+    return
+  }
+
+  pagamentoLoading.value = true
+  pagamentoError.value = ''
+
+  try {
+    await eventosStore.marcarComoPago(
+      route.params.id as string,
+      valor,
+      pagamentoForm.value.observacao || undefined
+    )
+    showPagamentoModal.value = false
+    pagamentoForm.value = { valor: '', observacao: '' }
+  } catch (error: any) {
+    pagamentoError.value = error.response?.data?.message || 'Erro ao marcar como pago'
+  } finally {
+    pagamentoLoading.value = false
   }
 }
 
@@ -314,15 +360,32 @@ function getStatusBadge(status: string) {
             </div>
           </div>
 
+          <!-- Botao Marcar como Pago (Admin) -->
+          <div v-if="canMarkAsPaid" class="bg-amber-50 rounded-xl border border-amber-200 p-5">
+            <h3 class="text-sm font-semibold text-amber-700 uppercase tracking-wider mb-3">Acao Administrativa</h3>
+            <p class="text-sm text-amber-600 mb-4">
+              Este evento esta em rascunho. Marque como pago para liberar a publicacao.
+            </p>
+            <button
+              @click="showPagamentoModal = true"
+              class="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-lg transition-colors flex items-center justify-center gap-2"
+            >
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Marcar como Pago
+            </button>
+          </div>
+
           <!-- Botao Encerrar/Excluir -->
           <div class="space-y-3">
             <button
               v-if="getNextStatus(eventosStore.eventoAtual.status)"
               :disabled="statusLoading"
               @click="handleStatusChange(getNextStatus(eventosStore.eventoAtual.status)!)"
-              class="w-full py-3 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg transition-colors disabled:opacity-50"
+              class="w-full py-3 bg-primary hover:bg-primary-dark text-white font-semibold rounded-lg transition-colors disabled:opacity-50"
             >
-              {{ eventosStore.eventoAtual.status === 'publicado' ? 'Encerrar Evento' : 'Avancar Status' }}
+              {{ eventosStore.eventoAtual.status === 'publicado' ? 'Encerrar Evento' : 'Publicar Evento' }}
             </button>
 
             <button
@@ -335,5 +398,75 @@ function getStatusBadge(status: string) {
         </div>
       </div>
     </div>
+
+    <!-- Modal Marcar como Pago -->
+    <Teleport to="body">
+      <div
+        v-if="showPagamentoModal"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50"
+        @click.self="showPagamentoModal = false"
+      >
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-md">
+          <div class="p-6 border-b border-gray-100">
+            <h2 class="text-xl font-bold text-gray-900">Marcar Evento como Pago</h2>
+            <p class="text-sm text-gray-500 mt-1">
+              {{ eventosStore.eventoAtual?.nome }}
+            </p>
+          </div>
+
+          <div class="p-6 space-y-4">
+            <div v-if="pagamentoError" class="p-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">
+              {{ pagamentoError }}
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">
+                Valor do Pagamento *
+              </label>
+              <div class="relative">
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">R$</span>
+                <input
+                  v-model="pagamentoForm.valor"
+                  type="text"
+                  inputmode="decimal"
+                  placeholder="0,00"
+                  class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">
+                Observacao (opcional)
+              </label>
+              <textarea
+                v-model="pagamentoForm.observacao"
+                rows="3"
+                placeholder="Ex: Pagamento via transferencia bancaria"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary resize-none"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="p-6 border-t border-gray-100 flex gap-3">
+            <button
+              @click="showPagamentoModal = false"
+              :disabled="pagamentoLoading"
+              class="flex-1 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50"
+            >
+              Cancelar
+            </button>
+            <button
+              @click="handleMarcarComoPago"
+              :disabled="pagamentoLoading"
+              class="flex-1 py-2 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-lg transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+            >
+              <Spinner v-if="pagamentoLoading" size="sm" />
+              <span v-else>Confirmar Pagamento</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </Teleport>
   </AppLayout>
 </template>
