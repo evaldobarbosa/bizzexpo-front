@@ -18,6 +18,11 @@ export async function authGuard(
     return next({ name: 'login', query: { redirect: to.fullPath } })
   }
 
+  // Se a rota requer admin e usuario nao e admin
+  if (to.meta.requiresAdmin && !authStore.isAdmin) {
+    return next({ name: 'dashboard' })
+  }
+
   // Se a rota e para visitantes e usuario esta autenticado
   if (to.meta.guest && authStore.isAuthenticated) {
     return next({ name: 'dashboard' })

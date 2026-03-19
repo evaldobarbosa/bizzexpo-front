@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { useAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
+import OrganizadorCombobox from '@/components/admin/OrganizadorCombobox.vue'
+import type { OrganizadorBusca } from '@/types'
 
 interface Props {
   title?: string
@@ -14,6 +16,11 @@ const router = useRouter()
 async function handleLogout() {
   await authStore.logout()
   router.push('/login')
+}
+
+async function handleSelecionarOrganizador(organizador: OrganizadorBusca) {
+  await authStore.startImpersonation(organizador.id)
+  router.push('/dashboard')
 }
 </script>
 
@@ -31,8 +38,14 @@ async function handleLogout() {
         <h1 v-if="title" class="text-xl font-semibold text-gray-900">{{ title }}</h1>
       </div>
 
-      <!-- Acoes (slot) + Logout -->
+      <!-- Acoes (slot) + Impersonation + Logout -->
       <div class="flex items-center gap-3">
+        <!-- Busca de organizadores para impersonation (apenas admin e nao impersonando) -->
+        <OrganizadorCombobox
+          v-if="authStore.isAdmin && !authStore.isImpersonating"
+          @selecionar="handleSelecionarOrganizador"
+        />
+
         <slot name="actions" />
 
         <!-- Botao logout -->

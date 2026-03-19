@@ -196,6 +196,13 @@ const router = createRouter({
       component: () => import('@/views/expositor/LeadsListView.vue'),
       meta: { requiresAuth: true },
     },
+    // Admin
+    {
+      path: '/admin/financeiro',
+      name: 'admin-financeiro',
+      component: () => import('@/views/admin/FinanceiroView.vue'),
+      meta: { requiresAuth: true, requiresAdmin: true },
+    },
   ],
 })
 

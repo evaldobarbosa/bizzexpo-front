@@ -248,6 +248,18 @@ export interface LeadCompleto {
   created_at: string
 }
 
+// Busca de Organizadores para Impersonation
+export interface OrganizadorBusca {
+  id: string
+  empresa: string
+  cnpj: string | null
+  user: {
+    id: string
+    name: string
+    email: string
+  }
+}
+
 // Tipos de resposta da API
 export interface ApiResponse<T> {
   data: T
