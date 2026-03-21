@@ -155,9 +155,9 @@ watch(
             </h3>
 
             <!-- QR Code -->
-            <div v-if="faturasStore.pagamentoAtual.pix_qrcode" class="flex justify-center mb-6">
+            <div v-if="faturasStore.pagamentoAtual.pix_qrcode_url" class="flex justify-center mb-6">
               <img
-                :src="`data:image/png;base64,${faturasStore.pagamentoAtual.pix_qrcode}`"
+                :src="faturasStore.pagamentoAtual.pix_qrcode_url"
                 alt="QR Code PIX"
                 class="w-64 h-64 border rounded-lg"
               />

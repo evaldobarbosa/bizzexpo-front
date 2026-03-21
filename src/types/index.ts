@@ -120,6 +120,7 @@ export interface Pagamento {
   valor_parcela?: number
   juros?: number
   pix_qrcode?: string
+  pix_qrcode_url?: string
   pix_copia_cola?: string
   pix_expira_em?: string
   paid_at?: string
