@@ -52,8 +52,9 @@ export interface Evento {
   local: string
   logo?: string
   banner?: string
-  status: 'rascunho' | 'pago' | 'publicado' | 'encerrado'
+  status: 'rascunho' | 'publicado' | 'encerrado'
   plano?: PlanoEvento
+  fatura_paga: boolean
   created_at: string
   updated_at: string
   expositores_count?: number
