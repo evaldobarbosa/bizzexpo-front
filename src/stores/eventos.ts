@@ -35,6 +35,7 @@ export const useEventosStore = defineStore('eventos', () => {
     data_inicio: string
     data_fim: string
     local: string
+    plano: 'essencial' | 'profissional' | 'enterprise'
   }) {
     const response = await api.post('/eventos', data)
     eventos.value.unshift(response.data.data)

@@ -15,6 +15,7 @@ const { form, loading, errors, submit } = useForm({
   data_inicio: '',
   data_fim: '',
   local: '',
+  plano: '' as 'essencial' | 'profissional' | 'enterprise' | '',
 })
 
 async function handleSubmit() {

@@ -196,6 +196,12 @@ const router = createRouter({
       component: () => import('@/views/expositor/LeadsListView.vue'),
       meta: { requiresAuth: true },
     },
+    {
+      path: '/expositor/carrinho',
+      name: 'expositor-carrinho',
+      component: () => import('@/views/expositor/CarrinhoView.vue'),
+      meta: { requiresAuth: true },
+    },
     // Admin
     {
       path: '/admin/financeiro',

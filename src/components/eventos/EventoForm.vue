@@ -2,6 +2,8 @@
 import Button from '@/components/ui/Button.vue'
 import Input from '@/components/ui/Input.vue'
 import FormField from '@/components/forms/FormField.vue'
+import PlanoSelector from '@/components/eventos/PlanoSelector.vue'
+import type { PlanoEvento } from '@/types'
 
 interface FormData {
   nome: string
@@ -9,6 +11,7 @@ interface FormData {
   data_inicio: string
   data_fim: string
   local: string
+  plano?: PlanoEvento
 }
 
 interface Props {
@@ -87,6 +90,10 @@ function getError(field: string): string | undefined {
         placeholder="Ex: Centro de Convencoes"
         :error="getError('local')"
       />
+    </FormField>
+
+    <FormField label="Plano do Evento" id="plano" :error="getError('plano')" required>
+      <PlanoSelector v-model="form.plano" :error="getError('plano')" />
     </FormField>
 
     <div class="flex justify-end gap-4">

@@ -39,6 +39,8 @@ export interface Participante extends User {
   cidade_uf?: string
 }
 
+export type PlanoEvento = 'essencial' | 'profissional' | 'enterprise'
+
 export interface Evento {
   id: string
   organizador_id: string
@@ -51,9 +53,46 @@ export interface Evento {
   logo?: string
   banner?: string
   status: 'rascunho' | 'pago' | 'publicado' | 'encerrado'
+  plano?: PlanoEvento
   created_at: string
   updated_at: string
   expositores_count?: number
+}
+
+export interface PlanoInfo {
+  value: PlanoEvento
+  label: string
+  preco: number | null
+  participantes: string
+  descricao: string
+}
+
+// Carrinho do Expositor
+export interface ItemCarrinho {
+  id: string
+  produto_id: string
+  produto?: Produto
+  quantidade: number
+  preco_unitario: number
+  subtotal: number
+}
+
+export interface Carrinho {
+  id: string
+  status: 'aberto' | 'fechado'
+  total: number
+  itens: ItemCarrinho[]
+  created_at?: string
+  updated_at?: string
+}
+
+export interface Produto {
+  id: string
+  nome: string
+  descricao?: string
+  tipo: 'estande' | 'marketing' | 'equipamento' | 'servico'
+  preco_base: number
+  ativo: boolean
 }
 
 export interface Categoria {
