@@ -75,21 +75,6 @@ async function handleStatusChange(newStatus: string) {
   }
 }
 
-function getNextStatus(currentStatus: string): string | null {
-  const evento = eventosStore.eventoAtual
-  if (!evento) return null
-
-  switch (currentStatus) {
-    case 'rascunho':
-      // Pode publicar se a fatura estiver paga
-      return evento.fatura_paga ? 'publicado' : null
-    case 'publicado':
-      return 'encerrado'
-    default:
-      return null
-  }
-}
-
 // Verifica se pode despublicar (voltar para rascunho)
 const canUnpublish = computed(() => {
   return eventosStore.eventoAtual?.status === 'publicado'
