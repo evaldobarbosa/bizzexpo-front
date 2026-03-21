@@ -202,6 +202,31 @@ const router = createRouter({
       component: () => import('@/views/expositor/CarrinhoView.vue'),
       meta: { requiresAuth: true },
     },
+    // Faturas
+    {
+      path: '/minhas-faturas',
+      name: 'minhas-faturas',
+      component: () => import('@/views/faturas/FaturasListView.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/faturas/:id',
+      name: 'fatura-detalhes',
+      component: () => import('@/views/faturas/FaturaDetailView.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/faturas/:id/pagar',
+      name: 'fatura-pagar',
+      component: () => import('@/views/faturas/FaturaPagarView.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/pagamento/:id/confirmado',
+      name: 'pagamento-confirmado',
+      component: () => import('@/views/faturas/PagamentoConfirmadoView.vue'),
+      meta: { requiresAuth: true },
+    },
     // Admin
     {
       path: '/admin/financeiro',

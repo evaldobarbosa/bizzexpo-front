@@ -67,6 +67,67 @@ export interface PlanoInfo {
   descricao: string
 }
 
+// Faturas e Pagamentos
+export type StatusFatura = 'rascunho' | 'pendente' | 'paga' | 'cancelada' | 'vencida'
+export type MetodoPagamento = 'credit_card' | 'debit_card' | 'pix' | 'manual'
+export type StatusPagamento = 'pendente' | 'processando' | 'pago' | 'falhou' | 'estornado'
+
+export interface ItemFatura {
+  id: string
+  descricao: string
+  quantidade: number
+  preco_unitario: number
+  subtotal: number
+  produto?: Produto
+}
+
+export interface Fatura {
+  id: string
+  numero: string
+  cliente_type: string
+  cliente_id: string
+  evento_id?: string
+  subtotal: number
+  desconto: number
+  total: number
+  status: StatusFatura
+  vencimento: string
+  created_at: string
+  updated_at: string
+  itens?: ItemFatura[]
+  evento?: {
+    id: string
+    nome: string
+  }
+}
+
+export interface Pagamento {
+  id: string
+  fatura_id: string
+  gateway_id?: string
+  gateway: string
+  valor: number
+  status: StatusPagamento
+  metodo: MetodoPagamento
+  parcelas?: number
+  valor_parcela?: number
+  juros?: number
+  pix_qrcode?: string
+  pix_copia_cola?: string
+  pix_expira_em?: string
+  paid_at?: string
+  metadata?: Record<string, unknown>
+  created_at: string
+}
+
+export interface Parcela {
+  quantidade: number
+  valor_parcela: number
+  valor_total: number
+  juros: number
+  tem_juros: boolean
+}
+
 // Carrinho do Expositor
 export interface ItemCarrinho {
   id: string

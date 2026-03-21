@@ -59,15 +59,6 @@ function getStatusBadge(status: string) {
 
 <template>
   <AppLayout title="Dashboard">
-    <template #actions>
-      <Button @click="router.push('/eventos/criar')">
-        <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-        </svg>
-        Novo Evento
-      </Button>
-    </template>
-
     <!-- Loading -->
     <div v-if="loading" class="flex items-center justify-center h-64">
       <Spinner size="lg" />
@@ -122,14 +113,24 @@ function getStatusBadge(status: string) {
         </div>
       </div>
 
-      <!-- Tabela Eventos Recentes -->
-      <div class="bg-white rounded-xl border border-gray-200">
-        <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-          <h2 class="text-lg font-semibold text-gray-900">Eventos Recentes</h2>
+      <!-- Header Eventos com Botao -->
+      <div class="flex items-center justify-between">
+        <h2 class="text-lg font-semibold text-gray-900">Eventos Recentes</h2>
+        <div class="flex items-center gap-3">
           <router-link to="/eventos" class="text-sm text-primary font-medium hover:underline">
             Ver todos
           </router-link>
+          <Button @click="router.push('/eventos/criar')">
+            <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+            Novo Evento
+          </Button>
         </div>
+      </div>
+
+      <!-- Tabela Eventos Recentes -->
+      <div class="bg-white rounded-xl border border-gray-200">
 
         <!-- Tabela -->
         <div class="overflow-x-auto">
