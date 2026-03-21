@@ -102,6 +102,7 @@ export interface Fatura {
   created_at: string
   updated_at: string
   itens?: ItemFatura[]
+  pagamentos?: Pagamento[]
   evento?: {
     id: string
     nome: string
@@ -123,6 +124,7 @@ export interface Pagamento {
   pix_qrcode_url?: string
   pix_copia_cola?: string
   pix_expira_em?: string
+  pix_valido?: boolean
   paid_at?: string
   metadata?: Record<string, unknown>
   created_at: string

@@ -32,6 +32,19 @@ const toastType = ref<'success' | 'error' | 'info'>('success')
 onMounted(async () => {
   await faturasStore.fetchFatura(faturaId.value)
   await faturasStore.fetchParcelas(faturaId.value)
+
+  // Verificar se ja existe pagamento PIX pendente
+  const fatura = faturasStore.faturaAtual
+  if (fatura?.pagamentos?.length) {
+    const pagamentoPix = fatura.pagamentos.find(
+      (p) => p.metodo === 'pix' && p.status === 'pendente' && p.pix_valido
+    )
+    if (pagamentoPix) {
+      // Setar o pagamento existente na store
+      faturasStore.pagamentoAtual = pagamentoPix
+      pixGerado.value = true
+    }
+  }
 })
 
 const parcelaInfo = computed(() => {
