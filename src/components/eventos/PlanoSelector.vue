@@ -6,7 +6,7 @@ interface Props {
   error?: string
 }
 
-const props = defineProps<Props>()
+defineProps<Props>()
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: PlanoEvento): void

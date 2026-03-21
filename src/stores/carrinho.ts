@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import api from '@/services/api'
-import type { Carrinho, ItemCarrinho } from '@/types'
+import type { Carrinho } from '@/types'
 
 export const useCarrinhoStore = defineStore('carrinho', () => {
   const carrinho = ref<Carrinho | null>(null)

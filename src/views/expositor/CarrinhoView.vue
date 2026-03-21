@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 import AppLayout from '@/components/layout/AppLayout.vue'
 import Card from '@/components/ui/Card.vue'
 import Spinner from '@/components/ui/Spinner.vue'
@@ -10,7 +10,6 @@ import CarrinhoVazio from '@/components/carrinho/CarrinhoVazio.vue'
 import { useCarrinhoStore } from '@/stores/carrinho'
 import { useExpositorDashboardStore } from '@/stores/expositorDashboard'
 
-const route = useRoute()
 const router = useRouter()
 const carrinhoStore = useCarrinhoStore()
 const expositorStore = useExpositorDashboardStore()
@@ -49,7 +48,7 @@ async function handleFinalizar() {
       name: 'expositor-pedido-confirmado',
       params: { faturaId: resultado.fatura_id },
     })
-  } catch (e) {
+  } catch {
     // Erro ja tratado no store
   }
 }
