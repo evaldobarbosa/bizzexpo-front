@@ -76,15 +76,31 @@ async function handleStatusChange(newStatus: string) {
 }
 
 function getNextStatus(currentStatus: string): string | null {
+  const evento = eventosStore.eventoAtual
+  if (!evento) return null
+
   switch (currentStatus) {
     case 'rascunho':
-      return null // Somente admin pode marcar como pago via endpoint específico
-    case 'pago':
-      return 'publicado'
+      // Pode publicar se a fatura estiver paga
+      return evento.fatura_paga ? 'publicado' : null
     case 'publicado':
       return 'encerrado'
     default:
       return null
+  }
+}
+
+// Verifica se pode despublicar (voltar para rascunho)
+const canUnpublish = computed(() => {
+  return eventosStore.eventoAtual?.status === 'publicado'
+})
+
+async function handleUnpublish() {
+  statusLoading.value = true
+  try {
+    await eventosStore.alterarStatus(route.params.id as string, 'rascunho')
+  } finally {
+    statusLoading.value = false
   }
 }
 
@@ -129,8 +145,6 @@ function getStatusBadge(status: string) {
       return { label: 'Publicado', class: 'bg-green-100 text-green-700' }
     case 'rascunho':
       return { label: 'Rascunho', class: 'bg-gray-100 text-gray-600' }
-    case 'pago':
-      return { label: 'Pago', class: 'bg-cyan-100 text-cyan-700' }
     case 'encerrado':
       return { label: 'Encerrado', class: 'bg-red-100 text-red-600' }
     default:
@@ -437,15 +451,52 @@ function getStatusBadge(status: string) {
             </button>
           </div>
 
-          <!-- Botao Encerrar/Excluir -->
+          <!-- Botoes de Status -->
           <div class="space-y-3">
+            <!-- Botao Publicar (rascunho com fatura paga) -->
             <button
-              v-if="getNextStatus(eventosStore.eventoAtual.status)"
+              v-if="eventosStore.eventoAtual.status === 'rascunho' && eventosStore.eventoAtual.fatura_paga"
               :disabled="statusLoading"
-              @click="handleStatusChange(getNextStatus(eventosStore.eventoAtual.status)!)"
+              @click="handleStatusChange('publicado')"
+              class="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+            >
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Publicar Evento
+            </button>
+
+            <!-- Aviso fatura pendente (rascunho sem fatura paga) -->
+            <div
+              v-if="eventosStore.eventoAtual.status === 'rascunho' && !eventosStore.eventoAtual.fatura_paga"
+              class="p-4 bg-amber-50 border border-amber-200 rounded-lg"
+            >
+              <p class="text-sm text-amber-700">
+                Para publicar este evento, primeiro realize o pagamento da fatura.
+              </p>
+            </div>
+
+            <!-- Botao Encerrar (publicado) -->
+            <button
+              v-if="eventosStore.eventoAtual.status === 'publicado'"
+              :disabled="statusLoading"
+              @click="handleStatusChange('encerrado')"
               class="w-full py-3 bg-primary hover:bg-primary-dark text-white font-semibold rounded-lg transition-colors disabled:opacity-50"
             >
-              {{ eventosStore.eventoAtual.status === 'publicado' ? 'Encerrar Evento' : 'Publicar Evento' }}
+              Encerrar Evento
+            </button>
+
+            <!-- Botao Despublicar (publicado) -->
+            <button
+              v-if="canUnpublish"
+              :disabled="statusLoading"
+              @click="handleUnpublish"
+              class="w-full py-3 border border-amber-300 bg-amber-50 text-amber-700 hover:bg-amber-100 font-medium rounded-lg transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+            >
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+              </svg>
+              Despublicar Evento
             </button>
 
             <button
