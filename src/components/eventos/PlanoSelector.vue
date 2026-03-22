@@ -4,9 +4,12 @@ import type { PlanoEvento, PlanoInfo } from '@/types'
 interface Props {
   modelValue?: PlanoEvento
   error?: string
+  disabled?: boolean
 }
 
-defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  disabled: false,
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: PlanoEvento): void
@@ -37,6 +40,7 @@ const planos: PlanoInfo[] = [
 ]
 
 function selectPlano(plano: PlanoEvento) {
+  if (props.disabled) return
   emit('update:modelValue', plano)
 }
 
@@ -54,11 +58,13 @@ function formatPrice(preco: number | null): string {
     <div
       v-for="plano in planos"
       :key="plano.value"
-      class="relative flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all"
+      class="relative flex items-start p-4 border-2 rounded-lg transition-all"
       :class="{
         'border-blue-500 bg-blue-50': modelValue === plano.value,
-        'border-gray-200 hover:border-gray-300': modelValue !== plano.value,
+        'border-gray-200': modelValue !== plano.value && !disabled,
+        'hover:border-gray-300 cursor-pointer': !disabled,
         'border-red-500': error && !modelValue,
+        'opacity-60 cursor-not-allowed': disabled && modelValue !== plano.value,
       }"
       @click="selectPlano(plano.value)"
     >

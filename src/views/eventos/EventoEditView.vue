@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, watch } from 'vue'
+import { onMounted, watch, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import AppLayout from '@/components/layout/AppLayout.vue'
 import Card from '@/components/ui/Card.vue'
@@ -14,10 +14,16 @@ const eventosStore = useEventosStore()
 
 const { form, loading, errors, submit } = useForm({
   nome: '',
+  slug: '',
   descricao: '',
   data_inicio: '',
   data_fim: '',
   local: '',
+  plano: undefined as string | undefined,
+})
+
+const faturaPaga = computed(() => {
+  return eventosStore.eventoAtual?.fatura_paga ?? false
 })
 
 onMounted(async () => {
@@ -29,10 +35,12 @@ watch(
   (evento) => {
     if (evento) {
       form.nome = evento.nome
+      form.slug = evento.slug
       form.descricao = evento.descricao
       form.data_inicio = evento.data_inicio.replace(' ', 'T').slice(0, 16)
       form.data_fim = evento.data_fim.replace(' ', 'T').slice(0, 16)
       form.local = evento.local
+      form.plano = evento.plano
     }
   },
   { immediate: true }
@@ -67,9 +75,11 @@ function handleCancel() {
 
       <Card>
         <EventoForm
-          :form="form"
+          v-model:form="form"
           :loading="loading"
           :errors="errors"
+          :fatura-paga="faturaPaga"
+          :is-edit="true"
           submit-label="Salvar Alteracoes"
           @submit="handleSubmit"
           @cancel="handleCancel"

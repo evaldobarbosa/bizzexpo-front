@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import Button from '@/components/ui/Button.vue'
 import Input from '@/components/ui/Input.vue'
 import FormField from '@/components/forms/FormField.vue'
@@ -7,6 +8,7 @@ import type { PlanoEvento } from '@/types'
 
 interface FormData {
   nome: string
+  slug?: string
   descricao: string
   data_inicio: string
   data_fim: string
@@ -18,6 +20,8 @@ interface Props {
   loading?: boolean
   errors?: Record<string, string[]>
   submitLabel?: string
+  faturaPaga?: boolean
+  isEdit?: boolean
 }
 
 const form = defineModel<FormData>('form', { required: true })
@@ -26,6 +30,12 @@ const props = withDefaults(defineProps<Props>(), {
   loading: false,
   errors: () => ({}),
   submitLabel: 'Salvar',
+  faturaPaga: false,
+  isEdit: false,
+})
+
+const baseUrl = computed(() => {
+  return `${window.location.origin}/evento/`
 })
 
 const emit = defineEmits<{
@@ -92,8 +102,31 @@ function getError(field: string): string | undefined {
       />
     </FormField>
 
+    <!-- Slug (apenas em edicao) -->
+    <FormField v-if="isEdit" label="URL do Evento" id="slug" :error="getError('slug')">
+      <div class="flex">
+        <span class="inline-flex items-center px-3 text-sm text-gray-500 bg-gray-100 border border-r-0 border-gray-300 rounded-l-lg whitespace-nowrap">
+          {{ baseUrl }}
+        </span>
+        <input
+          id="slug"
+          v-model="form.slug"
+          type="text"
+          placeholder="meu-evento"
+          class="flex-1 min-w-0 px-3 py-2 text-sm border border-gray-300 rounded-r-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          :class="{ 'border-red-500 focus:ring-red-500': getError('slug') }"
+        />
+      </div>
+      <p class="mt-1 text-xs text-gray-500">
+        Use apenas letras minusculas, numeros e hifens.
+      </p>
+    </FormField>
+
     <FormField label="Plano do Evento" id="plano" :error="getError('plano')" required>
-      <PlanoSelector v-model="form.plano" :error="getError('plano')" />
+      <PlanoSelector v-model="form.plano" :error="getError('plano')" :disabled="faturaPaga" />
+      <p v-if="faturaPaga" class="mt-2 text-sm text-amber-600">
+        O plano nao pode ser alterado pois a fatura ja foi paga.
+      </p>
     </FormField>
 
     <div class="flex justify-end gap-4">
