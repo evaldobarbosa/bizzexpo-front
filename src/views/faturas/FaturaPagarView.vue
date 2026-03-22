@@ -33,9 +33,10 @@ onMounted(async () => {
   await faturasStore.fetchFatura(faturaId.value)
   await faturasStore.fetchParcelas(faturaId.value)
 
-  // Verificar se ja existe pagamento PIX pendente
+  // Verificar se ja existe pagamento PIX pendente e valido
   const fatura = faturasStore.faturaAtual
   if (fatura?.pagamentos?.length) {
+    // Buscar PIX pendente e valido
     const pagamentoPix = fatura.pagamentos.find(
       (p) => p.metodo === 'pix' && p.status === 'pendente' && p.pix_valido
     )
