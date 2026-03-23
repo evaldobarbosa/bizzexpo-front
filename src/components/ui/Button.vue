@@ -1,7 +1,7 @@
 <script setup lang="ts">
 interface Props {
   type?: 'button' | 'submit' | 'reset'
-  variant?: 'primary' | 'secondary' | 'danger' | 'ghost'
+  variant?: 'primary' | 'secondary' | 'danger' | 'ghost' | 'tertiary'
   size?: 'sm' | 'md' | 'lg'
   disabled?: boolean
   loading?: boolean
@@ -15,17 +15,19 @@ const props = withDefaults(defineProps<Props>(), {
   loading: false,
 })
 
+// Verdant Pro: Primary usa gradient, Secondary usa secondary-container, Tertiary e ghost
 const variantClasses = {
-  primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500',
-  secondary: 'bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500',
-  danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
-  ghost: 'bg-transparent text-gray-700 hover:bg-gray-100 focus:ring-gray-500',
+  primary: 'signature-gradient text-on-primary hover:opacity-90 active:scale-[0.98]',
+  secondary: 'bg-secondary-container text-on-secondary-container hover:bg-secondary-fixed-dim',
+  danger: 'bg-error text-on-error hover:bg-error/90',
+  ghost: 'bg-transparent text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface',
+  tertiary: 'bg-transparent text-primary hover:bg-secondary-container/50',
 }
 
 const sizeClasses = {
-  sm: 'px-3 py-1.5 text-sm',
-  md: 'px-4 py-2 text-base',
-  lg: 'px-6 py-3 text-lg',
+  sm: 'px-3 py-1.5 text-sm gap-1.5',
+  md: 'px-4 py-2.5 text-base gap-2',
+  lg: 'px-6 py-3 text-lg gap-2',
 }
 </script>
 
@@ -33,7 +35,7 @@ const sizeClasses = {
   <button
     :type="props.type"
     :disabled="props.disabled || props.loading"
-    class="inline-flex items-center justify-center font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+    class="inline-flex items-center justify-center font-semibold rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
     :class="[variantClasses[props.variant], sizeClasses[props.size]]"
   >
     <svg
