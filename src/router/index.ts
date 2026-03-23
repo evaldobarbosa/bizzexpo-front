@@ -202,6 +202,19 @@ const router = createRouter({
       component: () => import('@/views/expositor/CarrinhoView.vue'),
       meta: { requiresAuth: true },
     },
+    // Perfil
+    {
+      path: '/perfil',
+      name: 'perfil',
+      component: () => import('@/views/perfil/PerfilView.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/perfil/alterar-senha',
+      name: 'alterar-senha',
+      component: () => import('@/views/perfil/AlterarSenhaView.vue'),
+      meta: { requiresAuth: true },
+    },
     // Faturas
     {
       path: '/minhas-faturas',

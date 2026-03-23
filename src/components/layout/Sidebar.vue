@@ -9,17 +9,22 @@ const menuItems = [
   {
     name: 'Dashboard',
     path: '/dashboard',
-    icon: 'grid',
+    icon: 'dashboard',
   },
   {
     name: 'Eventos',
     path: '/eventos',
-    icon: 'calendar',
+    icon: 'event',
   },
   {
     name: 'Minhas Faturas',
     path: '/minhas-faturas',
-    icon: 'receipt',
+    icon: 'receipt_long',
+  },
+  {
+    name: 'Meu Perfil',
+    path: '/perfil',
+    icon: 'person',
   },
 ]
 
@@ -27,7 +32,17 @@ const adminMenuItems = [
   {
     name: 'Financeiro',
     path: '/admin/financeiro',
-    icon: 'currency',
+    icon: 'payments',
+  },
+  {
+    name: 'Faturas',
+    path: '/admin/faturas',
+    icon: 'receipt_long',
+  },
+  {
+    name: 'Catalogo',
+    path: '/admin/catalogo',
+    icon: 'inventory_2',
   },
 ]
 
@@ -47,11 +62,14 @@ function getInitials(name: string | undefined) {
 </script>
 
 <template>
-  <aside class="hidden lg:flex lg:flex-col w-56 bg-white border-r border-gray-200">
+  <aside class="hidden lg:flex lg:flex-col w-64 bg-surface-container-low">
     <!-- Logo -->
-    <div class="flex items-center gap-2 h-16 px-4">
-      <img src="/logo-icon.png" alt="" class="h-8" />
-      <span class="text-lg font-bold text-primary">duevento</span>
+    <div class="flex items-center gap-3 h-20 px-6">
+      <img src="/logo-icon.png" alt="" class="h-9" />
+      <div>
+        <span class="text-xl font-bold tracking-tight text-on-surface font-headline">Duevento</span>
+        <p class="text-xs text-on-surface-variant opacity-70">Event Management</p>
+      </div>
     </div>
 
     <!-- Menu -->
@@ -60,41 +78,33 @@ function getInitials(name: string | undefined) {
         v-for="item in menuItems"
         :key="item.path"
         :to="item.path"
-        class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm font-medium"
+        class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-sm font-medium"
         :class="{
-          'bg-primary/10 text-primary': isActive(item.path),
-          'text-gray-600 hover:bg-gray-100 hover:text-gray-900': !isActive(item.path),
+          'bg-secondary-container text-on-secondary-container font-semibold': isActive(item.path),
+          'text-on-surface-variant hover:bg-surface-container-lowest hover:text-primary': !isActive(item.path),
         }"
       >
-        <svg v-if="item.icon === 'grid'" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-        </svg>
-        <svg v-if="item.icon === 'calendar'" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-        </svg>
-        <svg v-if="item.icon === 'receipt'" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z" />
-        </svg>
+        <span class="material-symbols-outlined text-[20px]">{{ item.icon }}</span>
         <span>{{ item.name }}</span>
       </RouterLink>
 
       <!-- Menu Admin -->
       <template v-if="authStore.isAdmin && !authStore.isImpersonating">
-        <div class="pt-4 mt-4 border-t border-gray-200">
-          <p class="px-4 mb-2 text-xs font-semibold text-gray-400 uppercase">Admin</p>
+        <div class="pt-4 mt-4">
+          <p class="px-4 mb-2 text-xs font-semibold text-on-surface-variant uppercase tracking-wider opacity-60">
+            Admin
+          </p>
           <RouterLink
             v-for="item in adminMenuItems"
             :key="item.path"
             :to="item.path"
-            class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm font-medium"
+            class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-sm font-medium"
             :class="{
-              'bg-primary/10 text-primary': isActive(item.path),
-              'text-gray-600 hover:bg-gray-100 hover:text-gray-900': !isActive(item.path),
+              'bg-secondary-container text-on-secondary-container font-semibold': isActive(item.path),
+              'text-on-surface-variant hover:bg-surface-container-lowest hover:text-primary': !isActive(item.path),
             }"
           >
-            <svg v-if="item.icon === 'currency'" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+            <span class="material-symbols-outlined text-[20px]">{{ item.icon }}</span>
             <span>{{ item.name }}</span>
           </RouterLink>
         </div>
@@ -102,16 +112,18 @@ function getInitials(name: string | undefined) {
     </nav>
 
     <!-- Usuario -->
-    <div class="px-3 py-4 border-t border-gray-200">
-      <div class="flex items-center gap-3 px-3">
-        <div class="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm font-semibold">
+    <div class="px-4 py-4">
+      <div class="flex items-center gap-3 px-3 py-3 rounded-xl bg-surface-container-lowest">
+        <div
+          class="w-10 h-10 rounded-full bg-secondary-container text-primary flex items-center justify-center text-sm font-semibold"
+        >
           {{ getInitials(authStore.user?.name) }}
         </div>
         <div class="flex-1 min-w-0">
-          <p class="text-sm font-medium text-gray-900 truncate">
+          <p class="text-sm font-semibold text-on-surface truncate">
             {{ authStore.user?.name || 'Admin' }}
           </p>
-          <p class="text-xs text-gray-500 truncate">
+          <p class="text-xs text-on-surface-variant truncate">
             {{ authStore.user?.email || 'admin@duevento.pt' }}
           </p>
         </div>
