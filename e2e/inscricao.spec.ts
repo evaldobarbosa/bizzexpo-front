@@ -5,6 +5,7 @@ const ORGANIZADOR_EMAIL = process.env.TEST_EMAIL || 'organizador@example.com'
 const ORGANIZADOR_PASSWORD = process.env.TEST_PASSWORD || 'password'
 
 // Slug do evento para testes (deve ser um evento publicado)
+// Use TEST_EVENTO_SLUG para ambiente local
 const EVENTO_SLUG = process.env.TEST_EVENTO_SLUG || 'cafe-tech'
 
 // Helper para fazer login
