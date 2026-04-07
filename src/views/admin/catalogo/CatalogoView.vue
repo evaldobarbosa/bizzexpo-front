@@ -402,12 +402,12 @@ onMounted(async () => {
       >
         <!-- Backdrop -->
         <div
-          class="absolute inset-0 bg-on-surface/50"
+          class="absolute inset-0 bg-black/50"
           @click="fecharModal"
         ></div>
 
         <!-- Modal Content -->
-        <div class="relative bg-surface-container-lowest rounded-2xl shadow-xl max-w-md w-full signature-shadow">
+        <div class="relative bg-white rounded-2xl shadow-xl max-w-md w-full">
           <div class="p-6">
             <h2 class="text-xl font-bold text-on-surface font-headline mb-6">
               {{ modalTitulo }}
