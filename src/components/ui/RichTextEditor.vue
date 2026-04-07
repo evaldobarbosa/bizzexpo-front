@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
-import EditorJS from '@editorjs/editorjs'
+import EditorJS, { type OutputData, type OutputBlockData } from '@editorjs/editorjs'
 import Header from '@editorjs/header'
 import List from '@editorjs/list'
 import Paragraph from '@editorjs/paragraph'
 import Quote from '@editorjs/quote'
 import Delimiter from '@editorjs/delimiter'
 import InlineCode from '@editorjs/inline-code'
+import DOMPurify from 'dompurify'
 
 interface Props {
   modelValue: string
@@ -28,33 +29,98 @@ const editorContainer = ref<HTMLElement | null>(null)
 let editor: EditorJS | null = null
 let isInternalChange = false
 
+// Tipos de bloco permitidos
+const ALLOWED_BLOCK_TYPES = ['paragraph', 'header', 'list', 'quote', 'delimiter']
+
+// Configuracao do DOMPurify para sanitizar texto inline
+const purifyConfig = {
+  ALLOWED_TAGS: ['b', 'i', 'strong', 'em', 'a', 'code', 'br'],
+  ALLOWED_ATTR: ['href', 'target', 'rel'],
+  ALLOW_DATA_ATTR: false,
+}
+
+// Sanitiza texto usando DOMPurify
+function sanitizeText(text: string): string {
+  if (!text) return ''
+  return DOMPurify.sanitize(text, purifyConfig)
+}
+
+// Sanitiza um bloco do Editor.js
+function sanitizeBlock(block: OutputBlockData): OutputBlockData | null {
+  // Verifica se o tipo de bloco e permitido
+  if (!ALLOWED_BLOCK_TYPES.includes(block.type)) {
+    return null
+  }
+
+  const sanitizedBlock = { ...block, data: { ...block.data } }
+
+  switch (block.type) {
+    case 'paragraph':
+    case 'header':
+      sanitizedBlock.data.text = sanitizeText(block.data.text as string)
+      break
+    case 'list':
+      if (Array.isArray(block.data.items)) {
+        sanitizedBlock.data.items = block.data.items.map((item: string) => sanitizeText(item))
+      }
+      break
+    case 'quote':
+      sanitizedBlock.data.text = sanitizeText(block.data.text as string)
+      if (block.data.caption) {
+        sanitizedBlock.data.caption = sanitizeText(block.data.caption as string)
+      }
+      break
+    case 'delimiter':
+      // Delimitador nao tem texto
+      break
+  }
+
+  return sanitizedBlock
+}
+
+// Sanitiza todos os blocos do Editor.js
+function sanitizeEditorData(data: OutputData): OutputData {
+  const sanitizedBlocks = data.blocks
+    .map(sanitizeBlock)
+    .filter((block): block is OutputBlockData => block !== null)
+
+  return {
+    ...data,
+    blocks: sanitizedBlocks,
+  }
+}
+
 // Converte string JSON ou texto simples para dados do Editor.js
-function parseContent(content: string): object {
+function parseContent(content: string): OutputData {
   if (!content) {
-    return { blocks: [] }
+    return { time: Date.now(), blocks: [], version: '2.28.0' }
   }
 
   try {
-    const parsed = JSON.parse(content)
+    const parsed = JSON.parse(content) as OutputData
     if (parsed.blocks) {
-      return parsed
+      return sanitizeEditorData(parsed)
     }
     // Se for JSON mas sem blocks, trata como texto
     return {
-      blocks: [{ type: 'paragraph', data: { text: content } }],
+      time: Date.now(),
+      blocks: [{ id: crypto.randomUUID(), type: 'paragraph', data: { text: sanitizeText(content) } }],
+      version: '2.28.0',
     }
   } catch {
     // Se nao for JSON, trata como texto simples
     if (content.trim()) {
       return {
-        blocks: [{ type: 'paragraph', data: { text: content } }],
+        time: Date.now(),
+        blocks: [{ id: crypto.randomUUID(), type: 'paragraph', data: { text: sanitizeText(content) } }],
+        version: '2.28.0',
       }
     }
-    return { blocks: [] }
+    return { time: Date.now(), blocks: [], version: '2.28.0' }
   }
 }
 
-// Converte dados do Editor.js para string JSON
+// Converte dados do Editor.js para string JSON sanitizada
 async function serializeContent(): Promise<string> {
   if (!editor) return ''
 
@@ -63,7 +129,9 @@ async function serializeContent(): Promise<string> {
     if (!data.blocks || data.blocks.length === 0) {
       return ''
     }
-    return JSON.stringify(data)
+    // Sanitiza antes de serializar
+    const sanitizedData = sanitizeEditorData(data)
+    return JSON.stringify(sanitizedData)
   } catch {
     return ''
   }
@@ -78,10 +146,10 @@ async function initEditor() {
     holder: editorContainer.value,
     placeholder: props.placeholder,
     minHeight: props.minHeight,
-    data: initialData as any,
+    data: initialData,
     tools: {
       header: {
-        class: Header as any,
+        class: Header as unknown as EditorJS.BlockToolConstructable,
         config: {
           levels: [2, 3, 4],
           defaultLevel: 2,
@@ -89,27 +157,27 @@ async function initEditor() {
         inlineToolbar: true,
       },
       list: {
-        class: List as any,
+        class: List as unknown as EditorJS.BlockToolConstructable,
         inlineToolbar: true,
         config: {
           defaultStyle: 'unordered',
         },
       },
       paragraph: {
-        class: Paragraph as any,
+        class: Paragraph as unknown as EditorJS.BlockToolConstructable,
         inlineToolbar: true,
       },
       quote: {
-        class: Quote as any,
+        class: Quote as unknown as EditorJS.BlockToolConstructable,
         inlineToolbar: true,
         config: {
           quotePlaceholder: 'Digite a citação',
           captionPlaceholder: 'Autor da citação',
         },
       },
-      delimiter: Delimiter,
+      delimiter: Delimiter as unknown as EditorJS.BlockToolConstructable,
       inlineCode: {
-        class: InlineCode as any,
+        class: InlineCode as unknown as EditorJS.InlineToolConstructable,
       },
     },
     onChange: async () => {
@@ -135,7 +203,7 @@ watch(
     isInternalChange = true
     try {
       const data = parseContent(newValue)
-      await editor.render(data as any)
+      await editor.render(data)
     } finally {
       isInternalChange = false
     }

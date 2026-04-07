@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import DOMPurify from 'dompurify'
 
 interface Props {
   content: string
@@ -17,6 +18,22 @@ interface EditorData {
   blocks: EditorBlock[]
 }
 
+// Tipos de bloco permitidos
+const ALLOWED_BLOCK_TYPES = ['paragraph', 'header', 'list', 'quote', 'delimiter']
+
+// Configuracao do DOMPurify
+const purifyConfig = {
+  ALLOWED_TAGS: ['b', 'i', 'strong', 'em', 'a', 'code', 'br'],
+  ALLOWED_ATTR: ['href', 'target', 'rel', 'class'],
+  ALLOW_DATA_ATTR: false,
+}
+
+// Sanitiza texto usando DOMPurify
+function sanitizeText(text: string): string {
+  if (!text) return ''
+  return DOMPurify.sanitize(text, purifyConfig)
+}
+
 // Tenta parsear o conteudo como JSON do Editor.js
 const parsedContent = computed(() => {
   if (!props.content) return null
@@ -24,7 +41,11 @@ const parsedContent = computed(() => {
   try {
     const data = JSON.parse(props.content) as EditorData
     if (data.blocks && Array.isArray(data.blocks)) {
-      return data
+      // Filtra apenas blocos permitidos
+      const filteredBlocks = data.blocks.filter((block) =>
+        ALLOWED_BLOCK_TYPES.includes(block.type)
+      )
+      return { ...data, blocks: filteredBlocks }
     }
     return null
   } catch {
@@ -36,32 +57,21 @@ const parsedContent = computed(() => {
 // Verifica se e conteudo do Editor.js
 const isEditorContent = computed(() => parsedContent.value !== null)
 
-// Renderiza texto com formatacao inline
+// Renderiza texto com formatacao inline (sanitizado)
 function renderInlineFormatting(text: string): string {
   if (!text) return ''
 
-  // Escapa HTML primeiro
-  let result = text
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
+  // Primeiro sanitiza o HTML existente
+  let result = sanitizeText(text)
 
-  // Inline code (backticks)
-  result = result.replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>')
-
-  // Bold (**text** ou <b>text</b>)
-  result = result.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-  result = result.replace(/&lt;b&gt;([^&]+)&lt;\/b&gt;/g, '<strong>$1</strong>')
-
-  // Italic (*text* ou <i>text</i>)
-  result = result.replace(/\*([^*]+)\*/g, '<em>$1</em>')
-  result = result.replace(/&lt;i&gt;([^&]+)&lt;\/i&gt;/g, '<em>$1</em>')
-
-  // Links
+  // Adiciona classes aos links
   result = result.replace(
-    /&lt;a href="([^"]+)"&gt;([^&]+)&lt;\/a&gt;/g,
-    '<a href="$1" class="text-primary hover:underline" target="_blank" rel="noopener">$2</a>'
+    /<a /g,
+    '<a class="text-primary hover:underline" target="_blank" rel="noopener noreferrer" '
   )
+
+  // Adiciona classes ao code
+  result = result.replace(/<code>/g, '<code class="inline-code">')
 
   return result
 }
