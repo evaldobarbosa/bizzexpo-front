@@ -51,8 +51,8 @@ function irParaInscricao() {
   // Se tiver apenas uma categoria selecionada, vai direto para ela
   const selecionadas = Object.entries(quantidades.value).filter(([, q]) => q > 0)
 
-  if (selecionadas.length === 1) {
-    const [categoriaId] = selecionadas[0]
+  if (selecionadas.length === 1 && selecionadas[0]) {
+    const categoriaId = selecionadas[0][0]
     router.push({
       name: 'evento-inscricao',
       params: { slug: props.eventoSlug },
