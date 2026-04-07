@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import Button from '@/components/ui/Button.vue'
 import Input from '@/components/ui/Input.vue'
 import FormField from '@/components/forms/FormField.vue'
 import PlanoSelector from '@/components/eventos/PlanoSelector.vue'
 import RichTextEditor from '@/components/ui/RichTextEditor.vue'
+import { useOrganizadorStore } from '@/stores/organizador'
 import type { PlanoEvento } from '@/types'
 
 interface FormData {
@@ -14,8 +15,18 @@ interface FormData {
   data_inicio: string
   data_fim: string
   local: string
+  whatsapp_contato?: string
   plano?: PlanoEvento
 }
+
+const organizadorStore = useOrganizadorStore()
+
+onMounted(async () => {
+  // Busca dados do organizador para poder copiar o telefone
+  if (!organizadorStore.organizador) {
+    await organizadorStore.fetchOrganizador()
+  }
+})
 
 interface Props {
   loading?: boolean
@@ -46,6 +57,29 @@ const emit = defineEmits<{
 
 function getError(field: string): string | undefined {
   return props.errors[field]?.[0]
+}
+
+// Formata telefone para exibicao
+function formatTelefone(event: Event) {
+  const input = event.target as HTMLInputElement
+  let value = input.value.replace(/\D/g, '')
+
+  if (value.length > 11) value = value.slice(0, 11)
+
+  if (value.length > 6) {
+    value = value.replace(/^(\d{2})(\d{5})(\d+)$/, '($1) $2-$3')
+  } else if (value.length > 2) {
+    value = value.replace(/^(\d{2})(\d+)$/, '($1) $2')
+  }
+
+  form.value.whatsapp_contato = value
+}
+
+// Copia telefone do organizador
+function copiarTelefoneOrganizador() {
+  if (organizadorStore.organizador?.telefone) {
+    form.value.whatsapp_contato = organizadorStore.organizador.telefone
+  }
 }
 </script>
 
@@ -95,6 +129,30 @@ function getError(field: string): string | undefined {
         placeholder="Ex: Centro de Convenções"
         :error="getError('local')"
       />
+    </FormField>
+
+    <FormField label="WhatsApp para contato" id="whatsapp_contato" :error="getError('whatsapp_contato')">
+      <div class="flex gap-2">
+        <Input
+          id="whatsapp_contato"
+          :model-value="form.whatsapp_contato || ''"
+          placeholder="(00) 00000-0000"
+          :error="getError('whatsapp_contato')"
+          class="flex-1"
+          @input="formatTelefone"
+        />
+        <button
+          v-if="organizadorStore.organizador?.telefone"
+          type="button"
+          @click="copiarTelefoneOrganizador"
+          class="px-3 py-2 text-sm font-medium text-primary border border-primary rounded-lg hover:bg-primary/5 transition-colors whitespace-nowrap"
+        >
+          Copiar do meu cadastro
+        </button>
+      </div>
+      <p class="mt-1 text-xs text-gray-500">
+        Este numero sera exibido como botao de contato na pagina publica do evento.
+      </p>
     </FormField>
 
     <!-- Slug (apenas em edição) -->

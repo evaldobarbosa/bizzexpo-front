@@ -7,7 +7,9 @@ import SobreEvento from '@/components/evento/SobreEvento.vue'
 import ExpositoresGrid from '@/components/evento/ExpositoresGrid.vue'
 import LocalizacaoEvento from '@/components/evento/LocalizacaoEvento.vue'
 import AdicionarCalendario from '@/components/evento/AdicionarCalendario.vue'
+import TicketSelector from '@/components/evento/TicketSelector.vue'
 import Spinner from '@/components/ui/Spinner.vue'
+import WhatsAppFAB from '@/components/ui/WhatsAppFAB.vue'
 
 const route = useRoute()
 const store = useEventoPublicoStore()
@@ -18,6 +20,7 @@ onMounted(async () => {
   await Promise.all([
     store.fetchEvento(slug.value),
     store.fetchExpositores(slug.value),
+    store.fetchCategorias(slug.value),
   ])
 })
 </script>
@@ -80,8 +83,26 @@ onMounted(async () => {
         </div>
       </div>
 
+      <!-- Coluna lateral de tickets (desktop) - flutuante a direita -->
+      <div class="hidden lg:block fixed right-8 top-24 w-80 z-10">
+        <TicketSelector
+          :categorias="store.categorias"
+          :evento-slug="store.evento.slug"
+        />
+      </div>
+
       <!-- Sobre -->
       <SobreEvento :evento="store.evento" />
+
+      <!-- Secao de tickets mobile -->
+      <div class="lg:hidden px-4 py-8 bg-slate-50">
+        <div class="max-w-md mx-auto">
+          <TicketSelector
+            :categorias="store.categorias"
+            :evento-slug="store.evento.slug"
+          />
+        </div>
+      </div>
 
       <!-- Expositores -->
       <ExpositoresGrid :expositores="store.expositores" />
@@ -106,6 +127,14 @@ onMounted(async () => {
           </router-link>
         </div>
       </section>
+
+      <!-- WhatsApp FAB -->
+      <WhatsAppFAB
+        v-if="store.evento.whatsapp_contato"
+        :numero="store.evento.whatsapp_contato"
+        :nome-evento="store.evento.nome"
+        :data-fim-evento="store.evento.data_fim"
+      />
 
       <!-- Footer simples -->
       <footer class="bg-slate-900 text-white py-8 px-4">

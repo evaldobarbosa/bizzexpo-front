@@ -16,6 +16,7 @@ interface FormData {
   data_inicio: string
   data_fim: string
   local: string
+  whatsapp_contato?: string
   plano?: PlanoEvento
 }
 
@@ -25,6 +26,7 @@ const { form, loading, errors, submit } = useForm<FormData>({
   data_inicio: '',
   data_fim: '',
   local: '',
+  whatsapp_contato: '',
   plano: undefined,
 })
 

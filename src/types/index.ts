@@ -50,6 +50,7 @@ export interface Evento {
   data_inicio: string
   data_fim: string
   local: string
+  whatsapp_contato?: string
   logo?: string
   banner?: string
   status: 'rascunho' | 'publicado' | 'encerrado'
@@ -277,6 +278,7 @@ export interface EventoPublico {
   data_inicio: string
   data_fim: string
   local: string
+  whatsapp_contato?: string
   logo?: string
   banner?: string
   status: string

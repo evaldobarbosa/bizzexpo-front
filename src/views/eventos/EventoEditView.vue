@@ -20,6 +20,7 @@ const { form, loading, errors, submit } = useForm({
   data_inicio: '',
   data_fim: '',
   local: '',
+  whatsapp_contato: '',
   plano: undefined as PlanoEvento | undefined,
 })
 
@@ -41,6 +42,7 @@ watch(
       form.data_inicio = evento.data_inicio.replace(' ', 'T').slice(0, 16)
       form.data_fim = evento.data_fim.replace(' ', 'T').slice(0, 16)
       form.local = evento.local
+      form.whatsapp_contato = evento.whatsapp_contato || ''
       form.plano = evento.plano
     }
   },
