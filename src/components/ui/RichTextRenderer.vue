@@ -73,48 +73,71 @@ function renderInlineFormatting(text: string): string {
     <template v-if="isEditorContent && parsedContent">
       <template v-for="(block, index) in parsedContent.blocks" :key="index">
         <!-- Paragrafo -->
+        <!-- eslint-disable-next-line vue/no-v-html -->
         <p
           v-if="block.type === 'paragraph'"
           class="mb-4 last:mb-0"
           v-html="renderInlineFormatting(block.data.text as string)"
         />
 
-        <!-- Header -->
-        <component
-          :is="`h${block.data.level || 2}`"
-          v-else-if="block.type === 'header'"
-          class="font-bold mb-3"
-          :class="{
-            'text-2xl': block.data.level === 2,
-            'text-xl': block.data.level === 3,
-            'text-lg': block.data.level === 4,
-          }"
+        <!-- Header H2 -->
+        <!-- eslint-disable-next-line vue/no-v-html -->
+        <h2
+          v-else-if="block.type === 'header' && block.data.level === 2"
+          class="text-2xl font-bold mb-3"
           v-html="renderInlineFormatting(block.data.text as string)"
         />
 
-        <!-- Lista -->
-        <component
-          :is="block.data.style === 'ordered' ? 'ol' : 'ul'"
-          v-else-if="block.type === 'list'"
-          class="mb-4 last:mb-0 pl-6"
-          :class="{
-            'list-disc': block.data.style !== 'ordered',
-            'list-decimal': block.data.style === 'ordered',
-          }"
+        <!-- Header H3 -->
+        <!-- eslint-disable-next-line vue/no-v-html -->
+        <h3
+          v-else-if="block.type === 'header' && block.data.level === 3"
+          class="text-xl font-bold mb-3"
+          v-html="renderInlineFormatting(block.data.text as string)"
+        />
+
+        <!-- Header H4 -->
+        <!-- eslint-disable-next-line vue/no-v-html -->
+        <h4
+          v-else-if="block.type === 'header' && (block.data.level === 4 || !block.data.level)"
+          class="text-lg font-bold mb-3"
+          v-html="renderInlineFormatting(block.data.text as string)"
+        />
+
+        <!-- Lista ordenada -->
+        <ol
+          v-else-if="block.type === 'list' && block.data.style === 'ordered'"
+          class="mb-4 last:mb-0 pl-6 list-decimal"
         >
+          <!-- eslint-disable-next-line vue/no-v-html -->
           <li
             v-for="(item, itemIndex) in (block.data.items as string[])"
             :key="itemIndex"
             class="mb-1 last:mb-0"
             v-html="renderInlineFormatting(item)"
           />
-        </component>
+        </ol>
+
+        <!-- Lista nao ordenada -->
+        <ul
+          v-else-if="block.type === 'list'"
+          class="mb-4 last:mb-0 pl-6 list-disc"
+        >
+          <!-- eslint-disable-next-line vue/no-v-html -->
+          <li
+            v-for="(item, itemIndex) in (block.data.items as string[])"
+            :key="itemIndex"
+            class="mb-1 last:mb-0"
+            v-html="renderInlineFormatting(item)"
+          />
+        </ul>
 
         <!-- Citacao -->
         <blockquote
           v-else-if="block.type === 'quote'"
           class="mb-4 last:mb-0 border-l-4 border-primary pl-4 italic"
         >
+          <!-- eslint-disable-next-line vue/no-v-html -->
           <p v-html="renderInlineFormatting(block.data.text as string)" />
           <cite v-if="block.data.caption" class="block mt-2 text-sm text-gray-500 not-italic">
             — {{ block.data.caption }}
