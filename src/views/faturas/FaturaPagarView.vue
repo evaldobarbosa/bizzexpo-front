@@ -34,10 +34,10 @@ onMounted(async () => {
   await faturasStore.fetchFatura(faturaId.value)
   await faturasStore.fetchParcelas(faturaId.value)
 
-  // Verificar se ja existe pagamento PIX pendente
+  // Verificar se já existe pagamento PIX pendente
   const fatura = faturasStore.faturaAtual
   if (fatura?.pagamentos?.length) {
-    // Buscar PIX pendente e valido
+    // Buscar PIX pendente e válido
     const pagamentoPix = fatura.pagamentos.find(
       (p) => p.metodo === 'pix' && p.status === 'pendente' && p.pix_valido
     )
@@ -98,19 +98,19 @@ async function copiarCodigoPix() {
     try {
       await navigator.clipboard.writeText(codigoPix)
       copiado.value = true
-      toastMessage.value = 'Codigo PIX copiado!'
+      toastMessage.value = 'Código PIX copiado!'
       toastType.value = 'success'
       showToast.value = true
       setTimeout(() => {
         copiado.value = false
       }, 2000)
     } catch {
-      toastMessage.value = 'Erro ao copiar codigo'
+      toastMessage.value = 'Erro ao copiar código'
       toastType.value = 'error'
       showToast.value = true
     }
   } else {
-    toastMessage.value = 'Codigo PIX nao disponivel'
+    toastMessage.value = 'Código PIX não disponível'
     toastType.value = 'error'
     showToast.value = true
   }
@@ -204,7 +204,7 @@ watch(
             </div>
 
             <h3 class="text-lg font-semibold text-gray-900 mb-4">
-              Escaneie o QR Code ou copie o codigo
+              Escaneie o QR Code ou copie o código
             </h3>
 
             <!-- QR Code -->
@@ -218,7 +218,7 @@ watch(
 
             <!-- Copia e Cola -->
             <div class="bg-gray-50 rounded-lg p-4 mb-6">
-              <p class="text-xs text-gray-500 mb-2">Codigo PIX (copia e cola)</p>
+              <p class="text-xs text-gray-500 mb-2">Código PIX (copia e cola)</p>
               <div class="flex items-center gap-2">
                 <input
                   type="text"
@@ -232,7 +232,7 @@ watch(
               </div>
             </div>
 
-            <!-- Expiracao -->
+            <!-- Expiração -->
             <div v-if="faturasStore.pagamentoAtual.pix_expira_em" class="text-sm text-gray-500">
               <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -242,7 +242,7 @@ watch(
 
             <div class="mt-6 p-4 bg-blue-50 rounded-lg">
               <p class="text-sm text-blue-700">
-                Apos o pagamento, a confirmacao sera automatica. Aguarde alguns segundos.
+                Após o pagamento, a confirmação será automática. Aguarde alguns segundos.
               </p>
             </div>
           </div>
@@ -267,7 +267,7 @@ watch(
 
           <h3 class="text-lg font-semibold text-gray-900 mb-6">Forma de pagamento</h3>
 
-          <!-- Opcoes de Metodo -->
+          <!-- Opções de método -->
           <div class="space-y-3 mb-6">
             <!-- PIX -->
             <label
@@ -290,12 +290,12 @@ watch(
                   </svg>
                   <span class="font-medium text-gray-900">PIX</span>
                 </div>
-                <p class="text-sm text-gray-500 mt-1">Pagamento instantaneo</p>
+                <p class="text-sm text-gray-500 mt-1">Pagamento instantâneo</p>
               </div>
               <span class="text-sm font-medium text-green-600">Sem juros</span>
             </label>
 
-            <!-- Cartao de Credito -->
+            <!-- Cartão de crédito -->
             <label
               class="flex items-center gap-4 p-4 border-2 rounded-lg cursor-pointer transition-all"
               :class="{
@@ -314,13 +314,13 @@ watch(
                   <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                   </svg>
-                  <span class="font-medium text-gray-900">Cartao de Credito</span>
+                  <span class="font-medium text-gray-900">Cartão de crédito</span>
                 </div>
-                <p class="text-sm text-gray-500 mt-1">Parcele em ate 12x</p>
+                <p class="text-sm text-gray-500 mt-1">Parcele em até 12x</p>
               </div>
             </label>
 
-            <!-- Cartao de Debito -->
+            <!-- Cartão de débito -->
             <label
               class="flex items-center gap-4 p-4 border-2 rounded-lg cursor-pointer transition-all"
               :class="{
@@ -339,15 +339,15 @@ watch(
                   <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                   </svg>
-                  <span class="font-medium text-gray-900">Cartao de Debito</span>
+                  <span class="font-medium text-gray-900">Cartão de débito</span>
                 </div>
-                <p class="text-sm text-gray-500 mt-1">Pagamento a vista</p>
+                <p class="text-sm text-gray-500 mt-1">Pagamento à vista</p>
               </div>
               <span class="text-sm font-medium text-green-600">Sem juros</span>
             </label>
           </div>
 
-          <!-- Parcelamento (apenas credito) -->
+          <!-- Parcelamento (apenas crédito) -->
           <div v-if="metodoPagamento === 'credit_card' && faturasStore.parcelas.length > 0" class="mb-6">
             <label class="block text-sm font-medium text-gray-700 mb-2">
               Parcelamento
@@ -369,10 +369,10 @@ watch(
             </div>
           </div>
 
-          <!-- Aviso Cartao (em desenvolvimento) -->
+          <!-- Aviso cartão (em desenvolvimento) -->
           <div v-if="metodoPagamento !== 'pix'" class="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-lg">
             <p class="text-sm text-amber-700">
-              <strong>Em desenvolvimento:</strong> O pagamento com cartao sera integrado em breve.
+              <strong>Em desenvolvimento:</strong> O pagamento com cartão será integrado em breve.
               Por enquanto, utilize o PIX.
             </p>
           </div>

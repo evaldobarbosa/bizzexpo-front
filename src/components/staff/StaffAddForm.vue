@@ -23,7 +23,7 @@ function handleSubmit() {
 <template>
   <form @submit.prevent="handleSubmit" class="space-y-6">
     <div>
-      <label for="email" class="block text-sm font-medium text-gray-700">Email do usuario *</label>
+      <label for="email" class="block text-sm font-medium text-gray-700">Email do usuário *</label>
       <Input
         id="email"
         v-model="email"
@@ -33,7 +33,7 @@ function handleSubmit() {
         class="mt-1"
       />
       <p class="mt-1 text-sm text-gray-500">
-        O usuario ja deve estar cadastrado no sistema.
+        O usuário já deve estar cadastrado no sistema.
       </p>
     </div>
 

@@ -21,19 +21,19 @@ const metodos: MetodoOpcao[] = [
   {
     value: 'pix',
     label: 'PIX',
-    descricao: 'Pagamento instantaneo',
+    descricao: 'Pagamento instantâneo',
     icon: 'qr_code_2',
   },
   {
     value: 'credit_card',
-    label: 'Cartao de Credito',
-    descricao: 'Parcele em ate 12x',
+    label: 'Cartão de crédito',
+    descricao: 'Parcele em até 12x',
     icon: 'credit_card',
   },
   {
     value: 'debit_card',
-    label: 'Cartao de Debito',
-    descricao: 'Debito em conta',
+    label: 'Cartão de débito',
+    descricao: 'Débito em conta',
     icon: 'credit_card',
   },
 ]

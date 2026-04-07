@@ -49,7 +49,7 @@ async function handleFinalizar() {
       params: { faturaId: resultado.fatura_id },
     })
   } catch {
-    // Erro ja tratado no store
+    // Erro já tratado no store
   }
 }
 

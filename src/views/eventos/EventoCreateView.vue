@@ -32,7 +32,7 @@ async function handleSubmit() {
   await submit(
     async (data) => {
       if (!data.plano) {
-        throw new Error('Plano e obrigatorio')
+        throw new Error('Plano é obrigatório')
       }
       const evento = await eventosStore.createEvento({
         ...data,
@@ -56,14 +56,14 @@ function handleCancel() {
 <template>
   <AppLayout>
     <div class="max-w-2xl mx-auto">
-      <h1 class="text-2xl font-bold text-gray-900 mb-6">Criar Evento</h1>
+      <h1 class="text-2xl font-bold text-gray-900 mb-6">Criar evento</h1>
 
       <Card>
         <EventoForm
           :form="form"
           :loading="loading"
           :errors="errors"
-          submit-label="Criar Evento"
+          submit-label="Criar evento"
           @submit="handleSubmit"
           @cancel="handleCancel"
         />

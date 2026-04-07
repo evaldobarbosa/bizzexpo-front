@@ -38,7 +38,7 @@ async function handleSubmit(email: string) {
         </svg>
         Voltar
       </Button>
-      <h1 class="text-2xl font-bold text-gray-900 mt-2">Adicionar Staff</h1>
+      <h1 class="text-2xl font-bold text-gray-900 mt-2">Adicionar staff</h1>
     </div>
 
     <div class="max-w-xl">

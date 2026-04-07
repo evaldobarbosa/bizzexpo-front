@@ -60,7 +60,7 @@ async function handleDelete(id: string) {
         </h1>
       </div>
       <Button @click="router.push(`/eventos/${eventoId}/expositores/${expositorId}/estandes/criar`)">
-        Novo Estande
+        Novo estande
       </Button>
     </div>
 
@@ -86,7 +86,7 @@ async function handleDelete(id: string) {
       <p class="mt-1 text-sm text-gray-500">Adicione o primeiro estande ao expositor.</p>
       <div class="mt-6">
         <Button @click="router.push(`/eventos/${eventoId}/expositores/${expositorId}/estandes/criar`)">
-          Adicionar Estande
+          Adicionar estande
         </Button>
       </div>
     </div>

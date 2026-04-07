@@ -40,7 +40,7 @@ const bannerUrl = computed(() => {
       <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/80"></div>
     </div>
 
-    <!-- Conteudo -->
+    <!-- Conteúdo -->
     <div class="relative max-w-7xl mx-auto px-4 py-16 md:py-24">
       <div class="flex flex-col items-center text-center">
         <!-- Logo do evento -->
@@ -75,7 +75,7 @@ const bannerUrl = computed(() => {
           </div>
         </div>
 
-        <!-- Botao de inscricao -->
+        <!-- Botão de inscrição -->
         <router-link
           :to="{ name: 'evento-inscricao', params: { slug: evento.slug } }"
           class="inline-flex items-center justify-center bg-primary text-white h-14 px-10 rounded-xl font-bold text-lg shadow-lg shadow-primary/30 hover:scale-[1.02] transition-transform active:scale-95"

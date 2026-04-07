@@ -140,10 +140,10 @@ onUnmounted(() => {
       <span class="text-sm">Expira em {{ tempoRestante }}</span>
     </div>
 
-    <!-- Instrucoes -->
+    <!-- Instruções -->
     <div class="mt-6 text-center max-w-sm">
       <p class="text-sm text-on-surface-variant">
-        Abra o app do seu banco, escaneie o QR Code ou copie o codigo abaixo
+        Abra o app do seu banco, escaneie o QR Code ou copie o código abaixo
       </p>
     </div>
 

@@ -48,13 +48,13 @@ function handleSubmit() {
     </div>
 
     <div>
-      <label for="descricao" class="block text-sm font-medium text-gray-700">Descricao</label>
+      <label for="descricao" class="block text-sm font-medium text-gray-700">Descrição</label>
       <textarea
         id="descricao"
         v-model="descricao"
         rows="3"
         class="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500"
-        placeholder="Descricao da categoria (opcional)"
+        placeholder="Descrição da categoria (opcional)"
       />
     </div>
 

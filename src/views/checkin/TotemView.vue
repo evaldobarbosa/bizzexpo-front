@@ -49,7 +49,7 @@ const handleCodigoManual = async () => {
     estado.value = 'sucesso'
   } catch {
     estado.value = 'erro'
-    mensagemErro.value = checkinStore.error || 'Codigo invalido'
+    mensagemErro.value = checkinStore.error || 'Código inválido'
 
     setTimeout(() => {
       resetarScanner()
@@ -86,7 +86,7 @@ const handleNovoCheckin = () => {
       <div v-if="estado === 'scanner'" class="w-full max-w-lg space-y-8">
         <div class="text-center">
           <h2 class="text-white text-2xl font-bold mb-2">Escaneie seu QR Code</h2>
-          <p class="text-white/50">Posicione o codigo no centro da marcacao abaixo</p>
+          <p class="text-white/50">Posicione o código no centro da marcação abaixo</p>
         </div>
 
         <!-- Scanner com moldura -->
@@ -120,20 +120,20 @@ const handleNovoCheckin = () => {
           </div>
         </div>
 
-        <!-- Botao digitar manualmente -->
+        <!-- Botão digitar manualmente -->
         <button
           @click="estado = 'manual'"
           class="w-full max-w-sm mx-auto flex items-center justify-center gap-2 py-4 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl transition-colors"
         >
-          Digitar codigo manualmente
+          Digitar código manualmente
         </button>
       </div>
 
       <!-- Estado: Manual -->
       <div v-else-if="estado === 'manual'" class="w-full max-w-lg space-y-6">
         <div class="text-center">
-          <h2 class="text-white text-2xl font-bold mb-2">Digite seu codigo</h2>
-          <p class="text-white/50">Insira o codigo da sua inscricao</p>
+          <h2 class="text-white text-2xl font-bold mb-2">Digite seu código</h2>
+          <p class="text-white/50">Insira o código da sua inscrição</p>
         </div>
 
         <div class="space-y-4">

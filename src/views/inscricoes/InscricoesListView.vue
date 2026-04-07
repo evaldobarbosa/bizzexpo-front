@@ -24,7 +24,7 @@ const categoriaFiltro = ref('')
 const checkinFiltro = ref<string>('')
 const paginaAtual = ref(1)
 
-// Confirmacao de cancelamento
+// Confirmação de cancelamento
 const inscricaoParaCancelar = ref<string | null>(null)
 
 // Debounce para busca
@@ -104,7 +104,7 @@ function mudaPagina(pagina: number) {
             </svg>
             Voltar
           </Button>
-          <h1 class="text-2xl font-bold text-gray-900 mt-2">Inscricoes</h1>
+          <h1 class="text-2xl font-bold text-gray-900 mt-2">Inscrições</h1>
           <p class="text-gray-500" v-if="eventosStore.eventoAtual">
             {{ eventosStore.eventoAtual.nome }}
           </p>
@@ -163,8 +163,8 @@ function mudaPagina(pagina: number) {
           <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
           </svg>
-          <h3 class="mt-2 text-sm font-medium text-gray-900">Nenhuma inscricao encontrada</h3>
-          <p class="mt-1 text-sm text-gray-500">Compartilhe o link do evento para receber inscricoes.</p>
+          <h3 class="mt-2 text-sm font-medium text-gray-900">Nenhuma inscrição encontrada</h3>
+          <p class="mt-1 text-sm text-gray-500">Compartilhe o link do evento para receber inscrições.</p>
         </div>
 
         <div v-else>
@@ -182,10 +182,10 @@ function mudaPagina(pagina: number) {
                     Check-in
                   </th>
                   <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Data Inscricao
+                    Data inscrição
                   </th>
                   <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Acoes
+                    Ações
                   </th>
                 </tr>
               </thead>
@@ -270,7 +270,7 @@ function mudaPagina(pagina: number) {
                 :disabled="paginaAtual === inscricoesStore.meta.last_page"
                 @click="mudaPagina(paginaAtual + 1)"
               >
-                Proxima
+                Próxima
               </Button>
             </div>
           </div>

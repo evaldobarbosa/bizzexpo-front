@@ -55,7 +55,7 @@ async function handleRemove(id: string) {
         </h1>
       </div>
       <Button @click="router.push(`/eventos/${eventoId}/staff/adicionar`)">
-        Adicionar Staff
+        Adicionar staff
       </Button>
     </div>
 
@@ -81,7 +81,7 @@ async function handleRemove(id: string) {
       <p class="mt-1 text-sm text-gray-500">Adicione membros da equipe ao evento.</p>
       <div class="mt-6">
         <Button @click="router.push(`/eventos/${eventoId}/staff/adicionar`)">
-          Adicionar Staff
+          Adicionar staff
         </Button>
       </div>
     </div>

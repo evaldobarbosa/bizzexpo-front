@@ -27,7 +27,7 @@ async function handleSubmit() {
 
 <template>
   <AuthLayout>
-    <!-- Card de Recuperacao -->
+    <!-- Card de recuperação -->
     <div class="w-full max-w-md bg-white rounded-xl shadow-xl p-8">
       <!-- Sucesso -->
       <div v-if="emailSent" class="text-center space-y-6">
@@ -41,7 +41,7 @@ async function handleSubmit() {
         <div>
           <h1 class="text-2xl font-bold text-gray-900 mb-3">Email enviado!</h1>
           <p class="text-gray-500">
-            Enviamos um link de recuperacao para <strong class="text-gray-700">{{ form.email }}</strong>.
+            Enviamos um link de recuperação para <strong class="text-gray-700">{{ form.email }}</strong>.
             Verifique sua caixa de entrada.
           </p>
         </div>
@@ -55,10 +55,10 @@ async function handleSubmit() {
 
       <!-- Formulario -->
       <template v-else>
-        <!-- Titulo -->
+        <!-- Título -->
         <div class="text-center mb-8">
-          <h1 class="text-2xl font-bold text-gray-900">Recuperar Senha</h1>
-          <p class="text-gray-500 mt-2">Insira seu e-mail para receber as instrucoes de recuperacao.</p>
+          <h1 class="text-2xl font-bold text-gray-900">Recuperar senha</h1>
+          <p class="text-gray-500 mt-2">Insira seu e-mail para receber as instruções de recuperação.</p>
         </div>
 
         <form @submit.prevent="handleSubmit" class="space-y-5">
@@ -81,14 +81,14 @@ async function handleSubmit() {
             <span v-if="getError('email')" class="text-red-500 text-xs mt-1">{{ getError('email') }}</span>
           </div>
 
-          <!-- Botao Enviar -->
+          <!-- Botão enviar -->
           <button
             type="submit"
             :disabled="loading"
             class="w-full bg-primary hover:bg-primary-dark text-white font-semibold py-3 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:shadow-md"
           >
             <span v-if="loading">Enviando...</span>
-            <span v-else>Enviar link de recuperacao</span>
+            <span v-else>Enviar link de recuperação</span>
           </button>
         </form>
 

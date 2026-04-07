@@ -59,7 +59,7 @@ function getError(field: string): string | undefined {
       />
     </FormField>
 
-    <FormField label="Descricao" id="descricao" :error="getError('descricao')" required>
+    <FormField label="Descrição" id="descricao" :error="getError('descricao')" required>
       <textarea
         id="descricao"
         v-model="form.descricao"
@@ -69,12 +69,12 @@ function getError(field: string): string | undefined {
           'border-gray-300': !getError('descricao'),
           'border-red-500 focus:ring-red-500': getError('descricao'),
         }"
-        placeholder="Descricao do evento"
+        placeholder="Descrição do evento"
       />
     </FormField>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <FormField label="Data de Inicio" id="data_inicio" :error="getError('data_inicio')" required>
+      <FormField label="Data de início" id="data_inicio" :error="getError('data_inicio')" required>
         <Input
           id="data_inicio"
           v-model="form.data_inicio"
@@ -83,7 +83,7 @@ function getError(field: string): string | undefined {
         />
       </FormField>
 
-      <FormField label="Data de Termino" id="data_fim" :error="getError('data_fim')" required>
+      <FormField label="Data de término" id="data_fim" :error="getError('data_fim')" required>
         <Input
           id="data_fim"
           v-model="form.data_fim"
@@ -97,12 +97,12 @@ function getError(field: string): string | undefined {
       <Input
         id="local"
         v-model="form.local"
-        placeholder="Ex: Centro de Convencoes"
+        placeholder="Ex: Centro de Convenções"
         :error="getError('local')"
       />
     </FormField>
 
-    <!-- Slug (apenas em edicao) -->
+    <!-- Slug (apenas em edição) -->
     <FormField v-if="isEdit" label="URL do Evento" id="slug" :error="getError('slug')">
       <div class="flex">
         <span class="inline-flex items-center px-3 text-sm text-gray-500 bg-gray-100 border border-r-0 border-gray-300 rounded-l-lg whitespace-nowrap">
@@ -118,14 +118,14 @@ function getError(field: string): string | undefined {
         />
       </div>
       <p class="mt-1 text-xs text-gray-500">
-        Use apenas letras minusculas, numeros e hifens.
+        Use apenas letras minúsculas, números e hifens.
       </p>
     </FormField>
 
     <FormField label="Plano do Evento" id="plano" :error="getError('plano')" required>
       <PlanoSelector v-model="form.plano" :error="getError('plano')" :disabled="faturaPaga" />
       <p v-if="faturaPaga" class="mt-2 text-sm text-amber-600">
-        O plano nao pode ser alterado pois a fatura ja foi paga.
+        O plano não pode ser alterado pois a fatura já foi paga.
       </p>
     </FormField>
 

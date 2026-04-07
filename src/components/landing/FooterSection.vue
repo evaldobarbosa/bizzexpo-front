@@ -9,16 +9,16 @@ const router = useRouter()
   <section id="contato" class="bg-primary py-16 px-6">
     <div class="max-w-4xl mx-auto text-center">
       <h2 class="text-white text-3xl md:text-4xl font-bold mb-4">
-        Pronto para elevar o nivel do seu proximo evento?
+        Pronto para elevar o nível do seu próximo evento?
       </h2>
       <p class="text-white/70 text-lg mb-8">
-        Junte-se a centenas de organizadores que ja transformaram seus eventos em maquinas de networking.
+        Junte-se a centenas de organizadores que já transformaram seus eventos em máquinas de networking.
       </p>
       <button
         @click="router.push('/register')"
         class="bg-white text-primary font-semibold px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors"
       >
-        Quero comecar gratuitamente
+        Quero começar gratuitamente
       </button>
     </div>
   </section>

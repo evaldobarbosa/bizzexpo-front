@@ -59,7 +59,7 @@ async function handleDelete(id: string) {
         </h1>
       </div>
       <Button @click="router.push(`/eventos/${eventoId}/expositores/criar`)">
-        Novo Expositor
+        Novo expositor
       </Button>
     </div>
 
@@ -85,7 +85,7 @@ async function handleDelete(id: string) {
       <p class="mt-1 text-sm text-gray-500">Adicione o primeiro expositor ao evento.</p>
       <div class="mt-6">
         <Button @click="router.push(`/eventos/${eventoId}/expositores/criar`)">
-          Adicionar Expositor
+          Adicionar expositor
         </Button>
       </div>
     </div>

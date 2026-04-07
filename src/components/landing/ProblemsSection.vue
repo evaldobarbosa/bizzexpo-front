@@ -2,22 +2,22 @@
 const problems = [
   {
     icon: 'timer',
-    title: 'Filas Longas',
-    description: 'Visitantes passam mais tempo nas filas do credenciamento do que explorando o evento, impactando sua experiencia.',
+    title: 'Filas longas',
+    description: 'Visitantes passam mais tempo nas filas do credenciamento do que explorando o evento, impactando sua experiência.',
   },
   {
     icon: 'database',
-    title: 'Dados Perdidos',
-    description: 'Informacoes valiosas sobre visitantes e leads nao sao capturadas ou se perdem em planilhas desorganizadas.',
+    title: 'Dados perdidos',
+    description: 'Informações valiosas sobre visitantes e leads não são capturadas ou se perdem em planilhas desorganizadas.',
   },
   {
     icon: 'chart',
-    title: 'ROI Invisivel',
-    description: 'Impossivel medir o retorno real do investimento sem metricas claras e dados de conversao em tempo real.',
+    title: 'ROI invisível',
+    description: 'Impossível medir o retorno real do investimento sem métricas claras e dados de conversão em tempo real.',
   },
   {
     icon: 'cog',
-    title: 'Processos Manuais',
+    title: 'Processos manuais',
     description: 'Equipes sobrecarregadas com tarefas repetitivas que poderiam ser automatizadas de forma inteligente.',
   },
 ]
@@ -29,10 +29,10 @@ const problems = [
       <!-- Header -->
       <div class="text-center mb-12">
         <h2 class="text-gray-900 text-3xl md:text-4xl font-bold mb-4">
-          O que esta custando o sucesso do seu evento?
+          O que está custando o sucesso do seu evento?
         </h2>
         <p class="text-gray-500 text-lg max-w-2xl mx-auto">
-          Identifique os principais obstaculos que impedem o organizador de alcancar o verdadeiro potencial do evento.
+          Identifique os principais obstáculos que impedem o organizador de alcançar o verdadeiro potencial do evento.
         </p>
       </div>
 

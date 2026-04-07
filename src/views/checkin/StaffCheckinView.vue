@@ -205,7 +205,7 @@ const irParaWalkin = () => {
               :disabled="!!inscricaoSelecionada.checkin_at"
               class="flex-1"
             >
-              {{ inscricaoSelecionada.checkin_at ? 'Ja realizado' : 'Confirmar Check-in' }}
+              {{ inscricaoSelecionada.checkin_at ? 'Já realizado' : 'Confirmar check-in' }}
             </Button>
           </div>
         </div>

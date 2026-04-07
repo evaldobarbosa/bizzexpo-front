@@ -30,12 +30,12 @@ async function handleSubmit() {
     },
     {
       onSuccess: () => {
-        successMessage.value = 'Senha alterada com sucesso! Voce sera redirecionado...'
-        // Limpa o formulario
+        successMessage.value = 'Senha alterada com sucesso! Você será redirecionado...'
+        // Limpa o formulário
         form.senha_atual = ''
         form.nova_senha = ''
         form.nova_senha_confirmation = ''
-        // Redireciona apos 2 segundos
+        // Redireciona após 2 segundos
         setTimeout(() => {
           router.push('/perfil')
         }, 2000)
@@ -46,7 +46,7 @@ async function handleSubmit() {
 </script>
 
 <template>
-  <AppLayout title="Alterar Senha">
+  <AppLayout title="Alterar senha">
     <div class="max-w-md mx-auto">
       <!-- Breadcrumb -->
       <div class="mb-6">
@@ -60,9 +60,9 @@ async function handleSubmit() {
       </div>
 
       <Card>
-        <h2 class="text-xl font-semibold text-on-surface mb-2">Alterar Senha</h2>
+        <h2 class="text-xl font-semibold text-on-surface mb-2">Alterar senha</h2>
         <p class="text-on-surface-variant mb-6">
-          Para sua seguranca, informe sua senha atual e escolha uma nova senha.
+          Para sua segurança, informe sua senha atual e escolha uma nova senha.
         </p>
 
         <form class="space-y-6" @submit.prevent="handleSubmit">
@@ -77,7 +77,7 @@ async function handleSubmit() {
             {{ successMessage }}
           </div>
 
-          <FormField label="Senha Atual" id="senha_atual" :error="getError('senha_atual')" required>
+          <FormField label="Senha atual" id="senha_atual" :error="getError('senha_atual')" required>
             <div class="relative">
               <Input
                 id="senha_atual"
@@ -99,7 +99,7 @@ async function handleSubmit() {
             </div>
           </FormField>
 
-          <FormField label="Nova Senha" id="nova_senha" :error="getError('nova_senha')" required>
+          <FormField label="Nova senha" id="nova_senha" :error="getError('nova_senha')" required>
             <div class="relative">
               <Input
                 id="nova_senha"
@@ -120,12 +120,12 @@ async function handleSubmit() {
               </button>
             </div>
             <p class="mt-1 text-xs text-on-surface-variant">
-              Minimo de 8 caracteres, incluindo letras maiusculas, minusculas e numeros.
+              Mínimo de 8 caracteres, incluindo letras maiúsculas, minúsculas e números.
             </p>
           </FormField>
 
           <FormField
-            label="Confirmar Nova Senha"
+            label="Confirmar nova senha"
             id="nova_senha_confirmation"
             :error="getError('nova_senha_confirmation')"
             required
@@ -155,7 +155,7 @@ async function handleSubmit() {
             <Button variant="tertiary" type="button" @click="router.push('/perfil')">
               Cancelar
             </Button>
-            <Button type="submit" :loading="loading">Alterar Senha</Button>
+            <Button type="submit" :loading="loading">Alterar senha</Button>
           </div>
         </form>
       </Card>

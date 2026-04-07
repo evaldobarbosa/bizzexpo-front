@@ -57,7 +57,7 @@ const handleInput = (value: string) => {
       </svg>
     </div>
 
-    <!-- Instrucao -->
+    <!-- Instrução -->
     <p v-if="termo.length < 3 && termo.length > 0" class="text-slate-500 text-sm">
       Digite pelo menos 3 caracteres para buscar
     </p>

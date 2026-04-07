@@ -27,9 +27,9 @@ async function handleSelecionarOrganizador(organizador: OrganizadorBusca) {
 <template>
   <header class="bg-white border-b border-gray-200">
     <div class="flex items-center justify-between h-16 px-6">
-      <!-- Titulo da pagina -->
+      <!-- Título da página -->
       <div class="flex items-center gap-4">
-        <!-- Botao menu mobile -->
+        <!-- Botão menu mobile -->
         <button class="lg:hidden p-2 text-gray-600 hover:text-gray-900 -ml-2">
           <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -38,9 +38,9 @@ async function handleSelecionarOrganizador(organizador: OrganizadorBusca) {
         <h1 v-if="title" class="text-xl font-semibold text-gray-900">{{ title }}</h1>
       </div>
 
-      <!-- Acoes (slot) + Impersonation + Logout -->
+      <!-- Ações (slot) + Impersonation + Logout -->
       <div class="flex items-center gap-3">
-        <!-- Busca de organizadores para impersonation (apenas admin e nao impersonando) -->
+        <!-- Busca de organizadores para impersonation (apenas admin e não impersonando) -->
         <OrganizadorCombobox
           v-if="authStore.isAdmin && !authStore.isImpersonating"
           @selecionar="handleSelecionarOrganizador"
@@ -48,7 +48,7 @@ async function handleSelecionarOrganizador(organizador: OrganizadorBusca) {
 
         <slot name="actions" />
 
-        <!-- Botao logout -->
+        <!-- Botão logout -->
         <button
           @click="handleLogout"
           class="p-2 text-gray-400 hover:text-gray-600 transition-colors"

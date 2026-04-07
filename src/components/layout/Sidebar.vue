@@ -17,12 +17,12 @@ const menuItems = [
     icon: 'event',
   },
   {
-    name: 'Minhas Faturas',
+    name: 'Minhas faturas',
     path: '/minhas-faturas',
     icon: 'receipt_long',
   },
   {
-    name: 'Meu Perfil',
+    name: 'Meu perfil',
     path: '/perfil',
     icon: 'person',
   },
@@ -40,7 +40,7 @@ const adminMenuItems = [
     icon: 'receipt_long',
   },
   {
-    name: 'Catalogo',
+    name: 'Catálogo',
     path: '/admin/catalogo',
     icon: 'inventory_2',
   },
@@ -111,7 +111,7 @@ function getInitials(name: string | undefined) {
       </template>
     </nav>
 
-    <!-- Usuario -->
+    <!-- Usuário -->
     <div class="px-4 py-4">
       <div class="flex items-center gap-3 px-3 py-3 rounded-xl bg-surface-container-lowest">
         <div

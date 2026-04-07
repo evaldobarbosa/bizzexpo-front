@@ -39,7 +39,7 @@ const handleSubmit = () => {
 }
 
 const formatTelefone = (value: string) => {
-  // Remove tudo que nao for numero
+  // Remove tudo que não for número
   const numbers = value.replace(/\D/g, '')
 
   // Aplica mascara
@@ -116,13 +116,13 @@ const handleTelefoneInput = (value: string) => {
       <Input
         id="cidade_uf"
         v-model="form.cidade_uf"
-        placeholder="Sao Paulo/SP"
+        placeholder="São Paulo/SP"
         :error="getError('cidade_uf')"
       />
     </FormField>
 
     <!-- Categoria -->
-    <FormField label="Categoria de participacao" id="categoria_id" :error="getError('categoria_id')" required>
+    <FormField label="Categoria de participação" id="categoria_id" :error="getError('categoria_id')" required>
       <select
         id="categoria_id"
         v-model="form.categoria_id"
@@ -155,7 +155,7 @@ const handleTelefoneInput = (value: string) => {
           Li e aceito os
           <a href="#" class="text-primary hover:underline">termos de uso</a>
           e a
-          <a href="#" class="text-primary hover:underline">politica de privacidade</a>
+          <a href="#" class="text-primary hover:underline">política de privacidade</a>
           do evento.
         </span>
       </label>
@@ -173,7 +173,7 @@ const handleTelefoneInput = (value: string) => {
       :disabled="loading"
       class="w-full"
     >
-      Confirmar Inscricao
+      Confirmar inscrição
     </Button>
   </form>
 </template>

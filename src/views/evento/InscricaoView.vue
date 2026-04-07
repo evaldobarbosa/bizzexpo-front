@@ -32,7 +32,7 @@ function fecharToast() {
 }
 
 onMounted(async () => {
-  // Carrega evento e categorias se ainda nao foram carregados
+  // Carrega evento e categorias se ainda não foram carregados
   if (!eventoStore.evento || eventoStore.evento.slug !== slug) {
     await eventoStore.fetchEvento(slug)
   }
@@ -48,28 +48,28 @@ const handleSubmit = async (dados: InscricaoForm) => {
   try {
     const inscricao = await inscricoesStore.criarInscricao(slug, dados)
 
-    // Redireciona para pagina de confirmacao
+    // Redireciona para página de confirmação
     router.push({
       name: 'evento-confirmacao',
       params: { slug, qrcode: inscricao.qrcode },
     })
   } catch (err: any) {
     if (err.response?.status === 422) {
-      // Erros de validacao
+      // Erros de validação
       if (err.response.data.errors) {
         errors.value = err.response.data.errors
       } else if (err.response.data.message) {
-        // Mensagem de erro de negocio (ex: inscricao duplicada)
+        // Mensagem de erro de negócio (ex: inscrição duplicada)
         errors.value = { _general: [err.response.data.message] }
       }
     } else if (err.response?.status === 404) {
-      mostrarToast('error', 'Evento nao encontrado.')
+      mostrarToast('error', 'Evento não encontrado.')
     } else if (err.response?.status >= 500) {
       mostrarToast('error', 'Erro no servidor. Tente novamente em alguns instantes.')
     } else if (err.code === 'ERR_NETWORK') {
-      mostrarToast('error', 'Erro de conexao. Verifique sua internet.')
+      mostrarToast('error', 'Erro de conexão. Verifique sua internet.')
     } else {
-      mostrarToast('error', 'Erro ao realizar inscricao. Tente novamente.')
+      mostrarToast('error', 'Erro ao realizar inscrição. Tente novamente.')
     }
   }
 }
@@ -99,12 +99,12 @@ const handleSubmit = async (dados: InscricaoForm) => {
           to="/"
           class="inline-flex items-center justify-center bg-primary text-white h-11 px-6 rounded-lg font-medium"
         >
-          Voltar para o inicio
+          Voltar para o início
         </router-link>
       </div>
     </div>
 
-    <!-- Formulario de inscricao -->
+    <!-- Formulário de inscrição -->
     <template v-else-if="eventoStore.evento">
       <!-- Header -->
       <header class="bg-white border-b border-slate-200 py-4 px-4">
@@ -118,18 +118,18 @@ const handleSubmit = async (dados: InscricaoForm) => {
             </svg>
           </router-link>
           <div>
-            <h1 class="font-semibold text-slate-900">Inscricao</h1>
+            <h1 class="font-semibold text-slate-900">Inscrição</h1>
             <p class="text-sm text-slate-500">{{ eventoStore.evento.nome }}</p>
           </div>
         </div>
       </header>
 
-      <!-- Conteudo -->
+      <!-- Conteúdo -->
       <main class="py-8 px-4">
         <div class="max-w-2xl mx-auto">
           <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8">
             <h2 class="text-2xl font-bold text-slate-900 mb-2">
-              Faca sua inscricao
+              Faça sua inscrição
             </h2>
             <p class="text-slate-600 mb-8">
               Preencha seus dados para se inscrever no evento

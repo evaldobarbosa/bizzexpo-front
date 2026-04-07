@@ -19,7 +19,7 @@ const eventoId = computed(() => route.params.id as string)
 const eventoNome = computed(() => eventosStore.eventoAtual?.nome ?? 'Evento')
 
 onMounted(async () => {
-  // Carrega evento se nao tiver
+  // Carrega evento se não tiver
   if (!eventosStore.eventoAtual || eventosStore.eventoAtual.id !== eventoId.value) {
     await eventosStore.fetchEvento(eventoId.value)
   }
@@ -43,7 +43,7 @@ async function handleFinalizar() {
       params: { id: resultado.fatura?.id ?? resultado.fatura_id },
     })
   } catch {
-    // Erro ja tratado no store
+    // Erro já tratado no store
   }
 }
 

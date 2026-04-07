@@ -55,7 +55,7 @@ const handleTelefoneInput = (value: string) => {
 
 <template>
   <form @submit.prevent="handleSubmit" class="space-y-4">
-    <!-- Titulo -->
+    <!-- Título -->
     <div class="mb-6">
       <h3 class="text-lg font-semibold text-slate-900">Cadastro Walk-in</h3>
       <p class="text-slate-500 text-sm">Cadastre um participante presencial</p>
@@ -121,7 +121,7 @@ const handleTelefoneInput = (value: string) => {
       <Input
         id="walkin-cidade"
         v-model="form.cidade_uf"
-        placeholder="Sao Paulo/SP"
+        placeholder="São Paulo/SP"
         :error="getError('cidade_uf')"
       />
     </FormField>
@@ -148,7 +148,7 @@ const handleTelefoneInput = (value: string) => {
       </select>
     </FormField>
 
-    <!-- Botoes -->
+    <!-- Botões -->
     <div class="flex gap-3 pt-4">
       <Button
         type="button"

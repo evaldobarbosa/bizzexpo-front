@@ -15,7 +15,7 @@ const statusFatura = computed(() => {
   if (props.evento.fatura_paga) {
     return { label: 'Pago', class: 'bg-green-100 text-green-700' }
   }
-  return { label: 'Nao pago', class: 'bg-amber-100 text-amber-700' }
+  return { label: 'Não pago', class: 'bg-amber-100 text-amber-700' }
 })
 
 function formatDate(date: string) {

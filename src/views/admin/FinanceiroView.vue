@@ -124,7 +124,7 @@ onMounted(() => {
               </svg>
             </div>
             <div>
-              <p class="text-sm text-gray-500">Receita do Mês</p>
+              <p class="text-sm text-gray-500">Receita do mês</p>
               <p class="text-2xl font-bold text-gray-900">
                 {{ formatarMoeda(metricas?.receita_mes || 0) }}
               </p>
@@ -132,7 +132,7 @@ onMounted(() => {
           </div>
         </Card>
 
-        <!-- Eventos Pagos -->
+        <!-- Eventos pagos -->
         <Card class="p-6">
           <div class="flex items-center gap-4">
             <div class="p-3 bg-blue-100 rounded-lg">
@@ -141,7 +141,7 @@ onMounted(() => {
               </svg>
             </div>
             <div>
-              <p class="text-sm text-gray-500">Eventos Pagos</p>
+              <p class="text-sm text-gray-500">Eventos pagos</p>
               <p class="text-2xl font-bold text-gray-900">
                 {{ metricas?.eventos_pagos || 0 }}
               </p>
@@ -149,7 +149,7 @@ onMounted(() => {
           </div>
         </Card>
 
-        <!-- Eventos Pendentes -->
+        <!-- Eventos pendentes -->
         <Card class="p-6">
           <div class="flex items-center gap-4">
             <div class="p-3 bg-amber-100 rounded-lg">
@@ -158,7 +158,7 @@ onMounted(() => {
               </svg>
             </div>
             <div>
-              <p class="text-sm text-gray-500">Eventos Pendentes</p>
+              <p class="text-sm text-gray-500">Eventos pendentes</p>
               <p class="text-2xl font-bold text-gray-900">
                 {{ metricas?.eventos_pendentes || 0 }}
               </p>
@@ -248,7 +248,7 @@ onMounted(() => {
                   variant="primary"
                   @click.stop="verDetalhes(evento)"
                 >
-                  Marcar Pago
+                  Marcar pago
                 </Button>
                 <svg class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />

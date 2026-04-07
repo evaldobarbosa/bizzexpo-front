@@ -24,7 +24,7 @@ const tiposProduto = [
   { value: 'estande', label: 'Estande' },
   { value: 'marketing', label: 'Marketing' },
   { value: 'equipamento', label: 'Equipamento' },
-  { value: 'servico', label: 'Servico' },
+  { value: 'servico', label: 'Serviço' },
 ]
 
 function formatarMoeda(valor: number): string {
@@ -48,7 +48,7 @@ function irParaCarrinho() {
 }
 
 onMounted(async () => {
-  // Carrega evento se nao tiver
+  // Carrega evento se não tiver
   if (!eventosStore.eventoAtual || eventosStore.eventoAtual.id !== eventoId.value) {
     await eventosStore.fetchEvento(eventoId.value)
   }
@@ -151,9 +151,9 @@ onMounted(async () => {
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
           </svg>
         </div>
-        <h3 class="text-xl font-bold text-gray-900">Nenhum produto disponivel</h3>
+        <h3 class="text-xl font-bold text-gray-900">Nenhum produto disponível</h3>
         <p class="mt-2 text-gray-500 max-w-md mx-auto">
-          {{ marketplaceStore.busca ? 'Nenhum produto encontrado com os filtros aplicados.' : 'Nao ha produtos disponiveis no momento.' }}
+          {{ marketplaceStore.busca ? 'Nenhum produto encontrado com os filtros aplicados.' : 'Não há produtos disponíveis no momento.' }}
         </p>
         <Button v-if="marketplaceStore.busca" variant="secondary" class="mt-4" @click="marketplaceStore.limparFiltros">
           Limpar filtros

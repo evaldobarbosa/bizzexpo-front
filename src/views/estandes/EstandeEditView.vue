@@ -47,7 +47,7 @@ async function handleSubmit(data: { nome?: string; localizacao?: string }) {
         </svg>
         Voltar
       </Button>
-      <h1 class="text-2xl font-bold text-gray-900 mt-2">Editar Estande</h1>
+      <h1 class="text-2xl font-bold text-gray-900 mt-2">Editar estande</h1>
     </div>
 
     <div v-if="loadingData" class="flex items-center justify-center h-64">

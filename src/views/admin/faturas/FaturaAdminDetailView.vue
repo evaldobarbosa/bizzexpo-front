@@ -38,7 +38,7 @@ async function carregarFatura() {
 }
 
 async function finalizarFatura() {
-  if (!confirm('Finalizar esta fatura? Ela sera enviada para o cliente.')) return
+  if (!confirm('Finalizar esta fatura? Ela será enviada para o cliente.')) return
 
   actionLoading.value = true
   try {
@@ -52,7 +52,7 @@ async function finalizarFatura() {
 }
 
 async function cancelarFatura() {
-  if (!confirm('Cancelar esta fatura? Esta acao nao pode ser desfeita.')) return
+  if (!confirm('Cancelar esta fatura? Esta ação não pode ser desfeita.')) return
 
   actionLoading.value = true
   try {
@@ -273,12 +273,12 @@ onMounted(() => {
         <div class="space-y-6">
           <Card class="p-6">
             <h3 class="text-sm font-semibold text-on-surface-variant uppercase tracking-wider mb-4">
-              Informacoes
+              Informações
             </h3>
 
             <div class="space-y-4">
               <div>
-                <p class="text-sm text-on-surface-variant">Numero</p>
+                <p class="text-sm text-on-surface-variant">Número</p>
                 <p class="font-mono font-semibold text-on-surface">{{ fatura.numero }}</p>
               </div>
 

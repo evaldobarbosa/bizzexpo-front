@@ -1,9 +1,9 @@
 <script setup lang="ts">
 const features = [
-  { title: 'Check-in inteligente', description: 'Reduza filas em ate 70% com QR Code e offline mode.' },
-  { title: 'Analytics em Tempo Real', description: 'Acompanhe metricas de visitantes e expositores em tempo real.' },
-  { title: 'Gestao Centralizada 360', description: 'Administre tudo de um unico painel de controle.' },
-  { title: 'Suporte Comercial 24/7', description: 'Equipe dedicada disponivel quando voce precisar.' },
+  { title: 'Check-in inteligente', description: 'Reduza filas em até 70% com QR Code e offline mode.' },
+  { title: 'Analytics em tempo real', description: 'Acompanhe métricas de visitantes e expositores em tempo real.' },
+  { title: 'Gestão centralizada 360', description: 'Administre tudo de um único painel de controle.' },
+  { title: 'Suporte comercial 24/7', description: 'Equipe dedicada disponível quando você precisar.' },
 ]
 </script>
 
@@ -23,7 +23,7 @@ const features = [
             duevento resolve tudo isso
           </h2>
           <p class="text-gray-500 text-lg mb-8">
-            Nossa plataforma foi desenvolvida para dar controle total aos organizadores, oferecendo uma solucao 360 para todo o ciclo de vida do evento.
+            Nossa plataforma foi desenvolvida para dar controle total aos organizadores, oferecendo uma solução 360 para todo o ciclo de vida do evento.
           </p>
 
           <!-- Lista de features -->
@@ -47,7 +47,7 @@ const features = [
 
           <!-- Link -->
           <button class="mt-8 text-primary font-semibold hover:underline inline-flex items-center gap-2">
-            Conheca todas as funcionalidades
+            Conheça todas as funcionalidades
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>

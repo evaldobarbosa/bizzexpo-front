@@ -48,12 +48,12 @@ function handleSubmit() {
     </div>
 
     <div>
-      <label for="localizacao" class="block text-sm font-medium text-gray-700">Localizacao</label>
+      <label for="localizacao" class="block text-sm font-medium text-gray-700">Localização</label>
       <Input
         id="localizacao"
         v-model="localizacao"
         type="text"
-        placeholder="Ex: Pavilhao A, Stand 15"
+        placeholder="Ex: Pavilhão A, Stand 15"
         class="mt-1"
       />
     </div>

@@ -153,7 +153,7 @@ onMounted(() => {
               <span class="material-symbols-outlined text-2xl text-primary">receipt_long</span>
             </div>
             <div>
-              <p class="text-sm text-on-surface-variant">Total Faturas</p>
+              <p class="text-sm text-on-surface-variant">Total faturas</p>
               <p class="text-2xl font-bold text-on-surface font-headline">
                 {{ faturas.length }}
               </p>
@@ -197,7 +197,7 @@ onMounted(() => {
               <span class="material-symbols-outlined text-2xl text-primary">account_balance</span>
             </div>
             <div>
-              <p class="text-sm text-on-surface-variant">Volume Total</p>
+              <p class="text-sm text-on-surface-variant">Volume total</p>
               <p class="text-2xl font-bold text-on-surface font-headline">
                 {{ formatarMoeda(metricas.total) }}
               </p>
@@ -209,7 +209,7 @@ onMounted(() => {
       <!-- Filtros -->
       <div class="flex flex-wrap items-center gap-4">
         <div class="flex-1 min-w-[200px] max-w-sm">
-          <Input v-model="busca" placeholder="Buscar por numero ou evento...">
+          <Input v-model="busca" placeholder="Buscar por número ou evento...">
             <template #prefix>
               <span class="material-symbols-outlined text-on-surface-variant">search</span>
             </template>
@@ -251,7 +251,7 @@ onMounted(() => {
           <table class="w-full">
             <thead>
               <tr class="border-b border-outline-variant/20">
-                <th class="text-left px-6 py-4 text-sm font-semibold text-on-surface-variant">Numero</th>
+                <th class="text-left px-6 py-4 text-sm font-semibold text-on-surface-variant">Número</th>
                 <th class="text-left px-6 py-4 text-sm font-semibold text-on-surface-variant">Evento</th>
                 <th class="text-left px-6 py-4 text-sm font-semibold text-on-surface-variant">Status</th>
                 <th class="text-left px-6 py-4 text-sm font-semibold text-on-surface-variant">Vencimento</th>

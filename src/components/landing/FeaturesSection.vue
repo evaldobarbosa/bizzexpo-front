@@ -4,31 +4,31 @@ import { ref } from 'vue'
 const activeTab = ref('gestao')
 
 const tabs = [
-  { id: 'gestao', label: 'Gestao' },
-  { id: 'inscricao', label: 'Inscricao' },
+  { id: 'gestao', label: 'Gestão' },
+  { id: 'inscricao', label: 'Inscrição' },
   { id: 'checkin', label: 'Check-in' },
   { id: 'leads', label: 'Leads' },
 ]
 
 const tabContent = {
   gestao: {
-    title: 'Gestao de Ponta a Ponta',
-    description: 'Controle financeiro, gestao de palestrantes e cronograma do evento em uma interface intuitiva. Nossa ferramenta de gestao permite que voce tenha visao 360 de cada detalhe, evitando imprevistos e otimizando recursos.',
+    title: 'Gestão de ponta a ponta',
+    description: 'Controle financeiro, gestão de palestrantes e cronograma do evento em uma interface intuitiva. Nossa ferramenta de gestão permite que você tenha visão 360 de cada detalhe, evitando imprevistos e otimizando recursos.',
     tags: ['Financeiro', 'Agenda'],
   },
   inscricao: {
-    title: 'Inscricoes Simplificadas',
-    description: 'Formularios personalizaveis, pagamento integrado e confirmacao automatica. Ofeca uma experiencia sem friccao para seus participantes desde o primeiro contato.',
-    tags: ['Formularios', 'Pagamentos'],
+    title: 'Inscrições simplificadas',
+    description: 'Formulários personalizáveis, pagamento integrado e confirmação automática. Ofereça uma experiência sem fricção para seus participantes desde o primeiro contato.',
+    tags: ['Formulários', 'Pagamentos'],
   },
   checkin: {
-    title: 'Check-in Instantaneo',
-    description: 'QR Code, reconhecimento facial ou lista manual. Voce escolhe a melhor opcao para seu evento e elimina filas desnecessarias.',
-    tags: ['QR Code', 'Rapido'],
+    title: 'Check-in instantâneo',
+    description: 'QR Code, reconhecimento facial ou lista manual. Você escolhe a melhor opção para seu evento e elimina filas desnecessárias.',
+    tags: ['QR Code', 'Rápido'],
   },
   leads: {
-    title: 'Captura de Leads',
-    description: 'App exclusivo para expositores coletarem leads com escaneamento de crachas. Dados sincronizados em tempo real com seu CRM.',
+    title: 'Captura de leads',
+    description: 'App exclusivo para expositores coletarem leads com escaneamento de crachás. Dados sincronizados em tempo real com seu CRM.',
     tags: ['App', 'CRM'],
   },
 }
@@ -36,7 +36,7 @@ const tabContent = {
 
 <template>
   <section id="funcionalidades" class="py-16 px-4 max-w-7xl mx-auto">
-    <h2 class="text-slate-900 text-3xl font-black text-center mb-10">Tudo o que voce precisa</h2>
+    <h2 class="text-slate-900 text-3xl font-black text-center mb-10">Tudo o que você precisa</h2>
 
     <div class="flex flex-wrap justify-center gap-2 mb-8 bg-slate-100 p-1 rounded-xl">
       <button

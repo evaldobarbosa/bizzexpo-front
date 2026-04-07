@@ -57,7 +57,7 @@ function handleVerDetalhes(fatura: Fatura) {
 </script>
 
 <template>
-  <AppLayout title="Minhas Faturas">
+  <AppLayout title="Minhas faturas">
     <div class="max-w-4xl mx-auto">
       <div v-if="faturasStore.loading && faturasStore.faturas.length === 0" class="flex justify-center py-12">
         <Spinner size="lg" />
@@ -85,7 +85,7 @@ function handleVerDetalhes(fatura: Fatura) {
             </svg>
             <h3 class="mt-4 text-lg font-medium text-gray-900">Nenhuma fatura encontrada</h3>
             <p class="mt-2 text-sm text-gray-500">
-              Suas faturas aparecerao aqui quando voce criar eventos ou comprar produtos.
+              Suas faturas aparecerão aqui quando você criar eventos ou comprar produtos.
             </p>
           </div>
         </Card>

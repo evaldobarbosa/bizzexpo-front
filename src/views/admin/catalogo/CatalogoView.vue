@@ -39,15 +39,15 @@ const tiposProduto: { value: TipoProduto; label: string }[] = [
   { value: 'estande', label: 'Estande' },
   { value: 'marketing', label: 'Marketing' },
   { value: 'equipamento', label: 'Equipamento' },
-  { value: 'servico', label: 'Servico' },
+  { value: 'servico', label: 'Serviço' },
 ]
 
 // Computed
 const modalTitulo = computed(() => {
   if (modalTipo.value === 'categoria') {
-    return modalModo.value === 'criar' ? 'Nova Categoria' : 'Editar Categoria'
+    return modalModo.value === 'criar' ? 'Nova categoria' : 'Editar categoria'
   }
-  return modalModo.value === 'criar' ? 'Novo Produto' : 'Editar Produto'
+  return modalModo.value === 'criar' ? 'Novo produto' : 'Editar produto'
 })
 
 // Methods
@@ -161,17 +161,17 @@ onMounted(async () => {
 </script>
 
 <template>
-  <AppLayout title="Catalogo">
+  <AppLayout title="Catálogo">
     <div class="space-y-6">
       <!-- Header Editorial -->
       <div class="mb-10 max-w-5xl">
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
             <h1 class="text-4xl md:text-5xl font-extrabold text-on-surface tracking-tight leading-tight font-headline">
-              Catalogo
+              Catálogo
             </h1>
             <p class="text-on-surface-variant text-lg mt-3 max-w-2xl">
-              Gerencie categorias e produtos disponiveis para eventos.
+              Gerencie categorias e produtos disponíveis para eventos.
             </p>
           </div>
           <Button
@@ -179,7 +179,7 @@ onMounted(async () => {
             variant="primary"
           >
             <span class="material-symbols-outlined text-xl mr-2">add</span>
-            {{ abaAtiva === 'categorias' ? 'Nova Categoria' : 'Novo Produto' }}
+            {{ abaAtiva === 'categorias' ? 'Nova categoria' : 'Novo produto' }}
           </Button>
         </div>
       </div>
@@ -228,7 +228,7 @@ onMounted(async () => {
           <div class="mt-8">
             <Button @click="abrirModalCategoria()" variant="primary">
               <span class="material-symbols-outlined mr-2">add</span>
-              Criar Categoria
+              Criar categoria
             </Button>
           </div>
         </div>
@@ -329,7 +329,7 @@ onMounted(async () => {
           <div v-if="!catalogoStore.busca && catalogoStore.categorias.length > 0" class="mt-8">
             <Button @click="abrirModalProduto()" variant="primary">
               <span class="material-symbols-outlined mr-2">add</span>
-              Criar Produto
+              Criar produto
             </Button>
           </div>
         </div>
@@ -420,12 +420,12 @@ onMounted(async () => {
                 <Input v-model="categoriaForm.nome" required placeholder="Nome da categoria" />
               </div>
               <div>
-                <label class="block text-sm font-medium text-on-surface-variant mb-2">Descricao</label>
+                <label class="block text-sm font-medium text-on-surface-variant mb-2">Descrição</label>
                 <textarea
                   v-model="categoriaForm.descricao"
                   rows="3"
                   class="w-full px-4 py-3 bg-surface-container-high rounded-lg text-on-surface placeholder:text-on-surface-variant/60 border-0 focus:ring-2 focus:ring-primary/40 transition-all"
-                  placeholder="Descricao opcional"
+                  placeholder="Descrição opcional"
                 ></textarea>
               </div>
 
@@ -469,7 +469,7 @@ onMounted(async () => {
                 </select>
               </div>
               <div>
-                <label class="block text-sm font-medium text-on-surface-variant mb-2">Preco Base (R$)</label>
+                <label class="block text-sm font-medium text-on-surface-variant mb-2">Preço base (R$)</label>
                 <Input
                   v-model.number="produtoForm.preco_base"
                   type="number"
@@ -480,12 +480,12 @@ onMounted(async () => {
                 />
               </div>
               <div>
-                <label class="block text-sm font-medium text-on-surface-variant mb-2">Descricao</label>
+                <label class="block text-sm font-medium text-on-surface-variant mb-2">Descrição</label>
                 <textarea
                   v-model="produtoForm.descricao"
                   rows="3"
                   class="w-full px-4 py-3 bg-surface-container-high rounded-lg text-on-surface placeholder:text-on-surface-variant/60 border-0 focus:ring-2 focus:ring-primary/40 transition-all"
-                  placeholder="Descricao opcional"
+                  placeholder="Descrição opcional"
                 ></textarea>
               </div>
 

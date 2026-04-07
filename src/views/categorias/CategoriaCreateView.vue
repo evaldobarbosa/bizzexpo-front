@@ -38,7 +38,7 @@ async function handleSubmit(data: { nome: string; descricao?: string }) {
         </svg>
         Voltar
       </Button>
-      <h1 class="text-2xl font-bold text-gray-900 mt-2">Nova Categoria</h1>
+      <h1 class="text-2xl font-bold text-gray-900 mt-2">Nova categoria</h1>
     </div>
 
     <div class="max-w-xl">

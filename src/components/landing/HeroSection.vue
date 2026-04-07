@@ -10,17 +10,17 @@ const router = useRouter()
       <!-- Conteudo -->
       <div class="flex flex-col gap-6">
         <div class="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-xs font-bold w-fit uppercase tracking-wider">
-          A REVOLUCAO DO CREDENCIAMENTO
+          A REVOLUÇÃO DO CREDENCIAMENTO
         </div>
 
         <h1 class="text-gray-900 text-4xl md:text-5xl font-bold leading-tight">
           Transforme seu evento em
-          <span class="text-primary">inteligencia comercial</span>
+          <span class="text-primary">inteligência comercial</span>
         </h1>
 
         <p class="text-gray-500 text-lg leading-relaxed">
           Abandone planilhas e processos manuais. Tenha controle total, dados
-          em tempo real e maximize o ROI da sua participacao de desenvolvedores e apoio.
+          em tempo real e maximize o ROI da sua participação de desenvolvedores e apoio.
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4 pt-2">
@@ -28,12 +28,12 @@ const router = useRouter()
             @click="router.push('/register')"
             class="flex items-center justify-center bg-primary hover:bg-primary-dark text-white h-12 px-8 rounded-lg font-semibold transition-colors"
           >
-            Comecar Agora
+            Começar agora
           </button>
           <button
             class="flex items-center justify-center bg-white text-gray-700 border border-gray-200 h-12 px-8 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
           >
-            Ver Planos
+            Ver planos
           </button>
         </div>
       </div>
@@ -55,7 +55,7 @@ const router = useRouter()
           <div class="space-y-4">
             <div>
               <div class="flex items-center justify-between mb-2">
-                <span class="text-sm text-gray-600 font-medium">Relatorio Inovacaoville</span>
+                <span class="text-sm text-gray-600 font-medium">Relatório Expo Tech 2026</span>
                 <span class="text-xs text-gray-400">Hoje</span>
               </div>
               <div class="h-2 bg-gray-100 rounded-full w-full"></div>
@@ -75,12 +75,12 @@ const router = useRouter()
                 <span class="text-sm text-gray-600 font-medium">Nextland Platform Preview</span>
               </div>
               <div class="p-3 bg-gray-50 rounded-lg text-sm text-gray-500">
-                Para o participante fazer o download dos arquivos que quiserem ter offline e visualizar o que e do seu interesse ou interesse futuramente.
+                Para o participante fazer o download dos arquivos que quiserem ter offline e visualizar o que é do seu interesse ou interesse futuramente.
               </div>
             </div>
 
             <div>
-              <span class="text-sm text-gray-600 font-medium">Solucoes para feiras e convencoes, eventos.</span>
+              <span class="text-sm text-gray-600 font-medium">Soluções para feiras e convenções, eventos.</span>
             </div>
 
             <div class="pt-2 border-t border-gray-100">

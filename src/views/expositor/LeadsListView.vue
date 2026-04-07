@@ -26,7 +26,7 @@ const handleFiltrar = async (filtros: { nivel_interesse?: string; busca?: string
   filtrosAtuais.value = {
     ...filtrosAtuais.value,
     ...filtros,
-    page: 1, // Volta para primeira pagina ao filtrar
+    page: 1, // Volta para primeira página ao filtrar
   }
   await store.fetchLeads(filtrosAtuais.value)
 }
@@ -83,7 +83,7 @@ const voltarDashboard = () => {
         <FiltrosLeads :loading="store.loading" @filtrar="handleFiltrar" />
       </div>
 
-      <!-- Conteudo -->
+      <!-- Conteúdo -->
       <div class="bg-white rounded-2xl border border-slate-200">
         <!-- Loading -->
         <div v-if="store.loading && store.leads.length === 0" class="text-center py-12">

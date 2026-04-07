@@ -10,9 +10,9 @@ const plans = [
     period: '/evento',
     description: 'Para eventos de pequeno porte',
     features: [
-      'Ate 500 participantes',
+      'Até 500 participantes',
       'Check-in por QR Code',
-      'Relatorios basicos',
+      'Relatórios básicos',
       'Suporte por email',
     ],
     popular: false,
@@ -22,22 +22,22 @@ const plans = [
     name: 'Profissional',
     price: 'R$ 899',
     period: '/evento',
-    description: 'Para feiras e conferencias',
+    description: 'Para feiras e conferências',
     features: [
-      'Ate 5.000 participantes',
+      'Até 5.000 participantes',
       'Captura de leads ilimitada',
-      'Integracao CRM',
-      'Analytics avancado',
-      'Suporte prioritario',
+      'Integração CRM',
+      'Analytics avançado',
+      'Suporte prioritário',
     ],
     popular: true,
-    buttonText: 'Selecionar Profissional',
+    buttonText: 'Selecionar profissional',
   },
   {
     name: 'Enterprise',
     price: 'Sob consulta',
     period: '',
-    description: 'Para grandes exposicoes',
+    description: 'Para grandes exposições',
     features: [
       'Participantes ilimitados',
       'White Label completo',
@@ -46,7 +46,7 @@ const plans = [
       'SLA garantido',
     ],
     popular: false,
-    buttonText: 'Falar com Consultor',
+    buttonText: 'Falar com consultor',
   },
 ]
 </script>
@@ -60,7 +60,7 @@ const plans = [
           Escolha o plano para o seu tamanho
         </h2>
         <p class="text-gray-500 text-lg">
-          Planos transparentes para que voce saiba exatamente o que esta recebendo.
+          Planos transparentes para que você saiba exatamente o que está recebendo.
         </p>
       </div>
 

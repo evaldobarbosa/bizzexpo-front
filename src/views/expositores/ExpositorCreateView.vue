@@ -43,14 +43,14 @@ function handleCancel() {
 <template>
   <AppLayout>
     <div class="max-w-2xl mx-auto">
-      <h1 class="text-2xl font-bold text-gray-900 mb-6">Adicionar Expositor</h1>
+      <h1 class="text-2xl font-bold text-gray-900 mb-6">Adicionar expositor</h1>
 
       <Card>
         <ExpositorForm
           :form="form"
           :loading="loading"
           :errors="errors"
-          submit-label="Adicionar Expositor"
+          submit-label="Adicionar expositor"
           @submit="handleSubmit"
           @cancel="handleCancel"
         />

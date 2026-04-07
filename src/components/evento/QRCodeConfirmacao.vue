@@ -22,18 +22,18 @@ const dataInscricao = computed(() => {
 
 <template>
   <div class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
-    <!-- Cabecalho verde de sucesso -->
+    <!-- Cabeçalho verde de sucesso -->
     <div class="bg-gradient-to-r from-green-500 to-green-600 text-white p-6 text-center">
       <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-white/20 flex items-center justify-center">
         <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
         </svg>
       </div>
-      <h2 class="text-2xl font-bold mb-1">Inscricao Confirmada!</h2>
-      <p class="text-green-100">Sua inscricao foi realizada com sucesso</p>
+      <h2 class="text-2xl font-bold mb-1">Inscrição confirmada!</h2>
+      <p class="text-green-100">Sua inscrição foi realizada com sucesso</p>
     </div>
 
-    <!-- Conteudo -->
+    <!-- Conteúdo -->
     <div class="p-6 space-y-6">
       <!-- QR Code -->
       <div class="flex justify-center">
@@ -50,7 +50,7 @@ const dataInscricao = computed(() => {
         Apresente este QR Code no credenciamento do evento
       </p>
 
-      <!-- Dados da inscricao -->
+      <!-- Dados da inscrição -->
       <div class="bg-slate-50 rounded-xl p-4 space-y-3">
         <div class="flex justify-between">
           <span class="text-slate-500 text-sm">Participante</span>
@@ -69,7 +69,7 @@ const dataInscricao = computed(() => {
           <span class="text-slate-900 font-medium text-sm">{{ inscricao.evento.nome }}</span>
         </div>
         <div class="flex justify-between">
-          <span class="text-slate-500 text-sm">Data da inscricao</span>
+          <span class="text-slate-500 text-sm">Data da inscrição</span>
           <span class="text-slate-900 font-medium text-sm">{{ dataInscricao }}</span>
         </div>
       </div>
@@ -80,7 +80,7 @@ const dataInscricao = computed(() => {
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
         <p class="text-sm text-amber-800">
-          Um e-mail de confirmacao foi enviado para <strong>{{ inscricao.participante.email }}</strong>.
+          Um e-mail de confirmação foi enviado para <strong>{{ inscricao.participante.email }}</strong>.
           Salve ou imprima o QR Code para o dia do evento.
         </p>
       </div>

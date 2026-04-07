@@ -47,7 +47,7 @@ function getFaturaBadge(evento: Evento) {
   if (evento.fatura_paga) {
     return { label: 'Pago', class: 'bg-emerald-500 text-white' }
   }
-  return { label: 'Nao pago', class: 'bg-red-500 text-white' }
+  return { label: 'Não pago', class: 'bg-red-500 text-white' }
 }
 
 function navigateToEvento(id: string) {
@@ -70,7 +70,7 @@ function navigateToEvento(id: string) {
         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
         </svg>
-        <span>Novo Evento</span>
+        <span>Novo evento</span>
       </button>
     </div>
 
@@ -128,7 +128,7 @@ function navigateToEvento(id: string) {
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
           </svg>
-          Criar Evento
+          Criar evento
         </button>
       </div>
     </div>

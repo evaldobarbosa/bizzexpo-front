@@ -69,7 +69,7 @@ const isJaRealizado = computed(() => props.result.ja_realizado === true)
 
 <template>
   <div class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
-    <!-- Cabecalho -->
+    <!-- Cabeçalho -->
     <div
       :class="[
         'text-white p-8 text-center',
@@ -93,10 +93,10 @@ const isJaRealizado = computed(() => props.result.ja_realizado === true)
       </div>
 
       <h2 class="text-3xl font-bold mb-2">
-        {{ isJaRealizado ? 'Ja Registrado!' : 'Check-in OK!' }}
+        {{ isJaRealizado ? 'Já registrado!' : 'Check-in OK!' }}
       </h2>
       <p v-if="isJaRealizado" class="text-amber-100">
-        Este participante ja realizou check-in
+        Este participante já realizou check-in
       </p>
       <p v-else class="text-green-100">
         Participante credenciado com sucesso
@@ -150,7 +150,7 @@ const isJaRealizado = computed(() => props.result.ja_realizado === true)
       </div>
     </div>
 
-    <!-- Botao novo check-in -->
+    <!-- Botão novo check-in -->
     <div class="p-6 pt-0">
       <button
         @click="emit('novo-checkin')"

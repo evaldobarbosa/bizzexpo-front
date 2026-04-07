@@ -57,13 +57,13 @@ const handleSubmit = async (dados: InscricaoForm) => {
         errors.value = { _general: [err.response.data.message] }
       }
     } else if (err.response?.status === 403) {
-      mostrarToast('error', 'Voce nao tem permissao para registrar walk-in neste evento.')
+      mostrarToast('error', 'Você não tem permissão para registrar walk-in neste evento.')
     } else if (err.response?.status === 404) {
-      mostrarToast('error', 'Evento nao encontrado.')
+      mostrarToast('error', 'Evento não encontrado.')
     } else if (err.response?.status >= 500) {
       mostrarToast('error', 'Erro no servidor. Tente novamente em alguns instantes.')
     } else if (err.code === 'ERR_NETWORK') {
-      mostrarToast('error', 'Erro de conexao. Verifique sua internet.')
+      mostrarToast('error', 'Erro de conexão. Verifique sua internet.')
     } else {
       mostrarToast('error', 'Erro ao registrar walk-in. Tente novamente.')
     }

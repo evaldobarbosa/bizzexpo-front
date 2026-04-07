@@ -81,7 +81,7 @@ async function adicionarItem() {
 
 <template>
   <div>
-    <!-- Botao para abrir form -->
+    <!-- Botão para abrir form -->
     <Button
       v-if="!showForm"
       variant="secondary"
@@ -92,7 +92,7 @@ async function adicionarItem() {
       Adicionar Item
     </Button>
 
-    <!-- Formulario -->
+    <!-- Formulário -->
     <div
       v-else
       class="p-6 bg-surface-container-low rounded-2xl space-y-4"
@@ -115,10 +115,10 @@ async function adicionarItem() {
         {{ error }}
       </div>
 
-      <!-- Descricao -->
+      <!-- Descrição -->
       <div>
         <label class="block text-sm font-medium text-on-surface-variant mb-2">
-          Descricao
+          Descrição
         </label>
         <input
           v-model="descricao"
@@ -130,7 +130,7 @@ async function adicionarItem() {
         />
       </div>
 
-      <!-- Quantidade e Preco -->
+      <!-- Quantidade e Preço -->
       <div class="grid grid-cols-2 gap-4">
         <div>
           <label class="block text-sm font-medium text-on-surface-variant mb-2">
@@ -148,7 +148,7 @@ async function adicionarItem() {
 
         <div>
           <label class="block text-sm font-medium text-on-surface-variant mb-2">
-            Preco Unitario (R$)
+            Preço unitário (R$)
           </label>
           <input
             v-model.number="precoUnitario"
@@ -171,7 +171,7 @@ async function adicionarItem() {
         <span class="font-semibold text-on-surface">{{ formatarMoeda(subtotal) }}</span>
       </div>
 
-      <!-- Acoes -->
+      <!-- Ações -->
       <div class="flex gap-3 pt-2">
         <Button
           variant="ghost"

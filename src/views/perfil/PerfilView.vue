@@ -91,14 +91,14 @@ function formatTelefone(event: Event) {
 </script>
 
 <template>
-  <AppLayout title="Meu Perfil">
+  <AppLayout title="Meu perfil">
     <div class="max-w-2xl mx-auto">
       <div v-if="organizadorStore.loading" class="flex items-center justify-center py-12">
         <Spinner size="lg" />
       </div>
 
       <template v-else>
-        <!-- Informacoes do Usuario -->
+        <!-- Informações do usuário -->
         <Card class="mb-6">
           <div class="flex items-center gap-4 mb-6">
             <div
@@ -121,7 +121,7 @@ function formatTelefone(event: Event) {
           </RouterLink>
         </Card>
 
-        <!-- Formulario Organizador -->
+        <!-- Formulário organizador -->
         <Card>
           <h3 class="text-lg font-semibold text-on-surface mb-6">Dados do Organizador</h3>
 
@@ -178,7 +178,7 @@ function formatTelefone(event: Event) {
             </div>
 
             <div class="flex justify-end pt-4">
-              <Button type="submit" :loading="loading">Salvar Alteracoes</Button>
+              <Button type="submit" :loading="loading">Salvar alterações</Button>
             </div>
           </form>
         </Card>

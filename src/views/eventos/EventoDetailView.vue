@@ -175,13 +175,13 @@ function getStatusBadge(status: string) {
         </button>
       </div>
 
-      <!-- Conteudo -->
+      <!-- Conteúdo -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <!-- Coluna Principal -->
         <div class="lg:col-span-2 space-y-6">
           <!-- Card Detalhes -->
           <div class="bg-white rounded-xl border border-gray-200 p-6">
-            <h2 class="text-lg font-semibold text-gray-900 mb-6">Detalhes do Evento</h2>
+            <h2 class="text-lg font-semibold text-gray-900 mb-6">Detalhes do evento</h2>
 
             <!-- Data e Hora -->
             <div class="flex items-start gap-3 mb-4">
@@ -193,7 +193,7 @@ function getStatusBadge(status: string) {
               <div>
                 <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Data e Hora</p>
                 <p class="text-sm text-gray-900">
-                  {{ formatDate(eventosStore.eventoAtual.data_inicio) }} as {{ formatTime(eventosStore.eventoAtual.data_inicio) }}
+                  {{ formatDate(eventosStore.eventoAtual.data_inicio) }} às {{ formatTime(eventosStore.eventoAtual.data_inicio) }}
                 </p>
               </div>
             </div>
@@ -207,20 +207,20 @@ function getStatusBadge(status: string) {
                 </svg>
               </div>
               <div>
-                <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Localizacao</p>
+                <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Localização</p>
                 <p class="text-sm text-gray-900">{{ eventosStore.eventoAtual.local }}</p>
               </div>
             </div>
 
-            <!-- Descricao -->
+            <!-- Descrição -->
             <div class="mb-6">
-              <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Descricao</p>
+              <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Descrição</p>
               <p class="text-sm text-gray-600 leading-relaxed whitespace-pre-wrap">
                 {{ eventosStore.eventoAtual.descricao }}
               </p>
             </div>
 
-            <!-- Botoes de navegacao -->
+            <!-- Botões de navegação -->
             <div class="grid grid-cols-2 md:grid-cols-5 gap-3 pt-6 border-t border-gray-100">
               <button
                 @click="router.push(`/eventos/${eventosStore.eventoAtual.id}/marketplace`)"
@@ -265,14 +265,14 @@ function getStatusBadge(status: string) {
                 <svg class="w-6 h-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                 </svg>
-                <span class="text-sm font-medium text-gray-700">Inscricoes</span>
+                <span class="text-sm font-medium text-gray-700">Inscrições</span>
               </button>
             </div>
           </div>
 
-          <!-- Link de Inscricao -->
+          <!-- Link de inscrição -->
           <div class="bg-primary/5 rounded-xl border border-primary/20 p-5">
-            <h3 class="text-sm font-semibold text-primary uppercase tracking-wider mb-3">Link de Inscricao</h3>
+            <h3 class="text-sm font-semibold text-primary uppercase tracking-wider mb-3">Link de inscrição</h3>
             <div class="flex items-center gap-2">
               <input
                 type="text"
@@ -311,7 +311,7 @@ function getStatusBadge(status: string) {
             }"
           >
             <div class="flex items-center justify-between mb-3">
-              <h3 class="text-sm font-semibold text-gray-700 uppercase tracking-wider">Fatura do Evento</h3>
+              <h3 class="text-sm font-semibold text-gray-700 uppercase tracking-wider">Fatura do evento</h3>
               <span
                 class="px-2 py-1 text-xs font-medium rounded-full"
                 :class="{
@@ -328,7 +328,7 @@ function getStatusBadge(status: string) {
 
             <div class="space-y-2 mb-4">
               <div class="flex justify-between text-sm">
-                <span class="text-gray-500">Numero:</span>
+                <span class="text-gray-500">Número:</span>
                 <span class="font-medium text-gray-900">#{{ eventosStore.eventoAtual.fatura.numero }}</span>
               </div>
               <div class="flex justify-between text-sm">
@@ -350,20 +350,20 @@ function getStatusBadge(status: string) {
               :to="`/faturas/${eventosStore.eventoAtual.fatura.id}/pagar`"
               class="block w-full py-2.5 bg-primary hover:bg-primary-dark text-white text-center font-semibold rounded-lg transition-colors"
             >
-              Pagar Fatura
+              Pagar fatura
             </router-link>
             <button
               v-else
               @click="showFaturaDrawer = true"
               class="w-full py-2.5 border border-gray-300 text-gray-700 text-center font-medium rounded-lg hover:bg-gray-50 transition-colors"
             >
-              Ver Detalhes
+              Ver detalhes
             </button>
           </div>
 
-          <!-- Acoes Rapidas -->
+          <!-- Ações rápidas -->
           <div class="bg-white rounded-xl border border-gray-200 p-5">
-            <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Acoes Rapidas</h3>
+            <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Ações rápidas</h3>
             <div class="space-y-2">
               <button
                 v-if="eventosStore.eventoAtual.status === 'publicado'"
@@ -390,7 +390,7 @@ function getStatusBadge(status: string) {
                   <svg class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                   </svg>
-                  <span class="text-sm font-medium text-gray-700">Inscricao Walk-in</span>
+                  <span class="text-sm font-medium text-gray-700">Inscrição walk-in</span>
                 </div>
                 <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -406,7 +406,7 @@ function getStatusBadge(status: string) {
                   <svg class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
-                  <span class="text-sm font-medium text-gray-700">Configurar Totem</span>
+                  <span class="text-sm font-medium text-gray-700">Configurar totem</span>
                 </div>
                 <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -421,7 +421,7 @@ function getStatusBadge(status: string) {
                   <svg class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                   </svg>
-                  <span class="text-sm font-medium text-gray-700">Editar Evento</span>
+                  <span class="text-sm font-medium text-gray-700">Editar evento</span>
                 </div>
                 <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -430,11 +430,11 @@ function getStatusBadge(status: string) {
             </div>
           </div>
 
-          <!-- Botao Marcar como Pago (Admin) -->
+          <!-- Botão marcar como pago (Admin) -->
           <div v-if="canMarkAsPaid" class="bg-amber-50 rounded-xl border border-amber-200 p-5">
-            <h3 class="text-sm font-semibold text-amber-700 uppercase tracking-wider mb-3">Acao Administrativa</h3>
+            <h3 class="text-sm font-semibold text-amber-700 uppercase tracking-wider mb-3">Ação administrativa</h3>
             <p class="text-sm text-amber-600 mb-4">
-              Este evento esta em rascunho. Marque como pago para liberar a publicacao.
+              Este evento está em rascunho. Marque como pago para liberar a publicação.
             </p>
             <button
               @click="showPagamentoModal = true"
@@ -443,13 +443,13 @@ function getStatusBadge(status: string) {
               <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              Marcar como Pago
+              Marcar como pago
             </button>
           </div>
 
-          <!-- Botoes de Status -->
+          <!-- Botões de status -->
           <div class="space-y-3">
-            <!-- Botao Publicar (rascunho com fatura paga) -->
+            <!-- Botão publicar (rascunho com fatura paga) -->
             <button
               v-if="eventosStore.eventoAtual.status === 'rascunho' && eventosStore.eventoAtual.fatura_paga"
               :disabled="statusLoading"
@@ -459,7 +459,7 @@ function getStatusBadge(status: string) {
               <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
               </svg>
-              Publicar Evento
+              Publicar evento
             </button>
 
             <!-- Aviso fatura pendente (rascunho sem fatura paga) -->
@@ -472,17 +472,17 @@ function getStatusBadge(status: string) {
               </p>
             </div>
 
-            <!-- Botao Encerrar (publicado) -->
+            <!-- Botão encerrar (publicado) -->
             <button
               v-if="eventosStore.eventoAtual.status === 'publicado'"
               :disabled="statusLoading"
               @click="handleStatusChange('encerrado')"
               class="w-full py-3 bg-primary hover:bg-primary-dark text-white font-semibold rounded-lg transition-colors disabled:opacity-50"
             >
-              Encerrar Evento
+              Encerrar evento
             </button>
 
-            <!-- Botao Despublicar (publicado) -->
+            <!-- Botão despublicar (publicado) -->
             <button
               v-if="canUnpublish"
               :disabled="statusLoading"
@@ -492,14 +492,14 @@ function getStatusBadge(status: string) {
               <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
               </svg>
-              Despublicar Evento
+              Despublicar evento
             </button>
 
             <button
               @click="handleDelete"
               class="w-full py-3 border border-red-200 text-red-600 hover:bg-red-50 font-medium rounded-lg transition-colors"
             >
-              {{ confirmDelete ? 'Confirmar Exclusao' : 'Excluir Evento' }}
+              {{ confirmDelete ? 'Confirmar exclusão' : 'Excluir evento' }}
             </button>
           </div>
         </div>
@@ -515,7 +515,7 @@ function getStatusBadge(status: string) {
       >
         <div class="bg-white rounded-xl shadow-xl w-full max-w-md">
           <div class="p-6 border-b border-gray-100">
-            <h2 class="text-xl font-bold text-gray-900">Marcar Evento como Pago</h2>
+            <h2 class="text-xl font-bold text-gray-900">Marcar evento como pago</h2>
             <p class="text-sm text-gray-500 mt-1">
               {{ eventosStore.eventoAtual?.nome }}
             </p>
@@ -528,7 +528,7 @@ function getStatusBadge(status: string) {
 
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1">
-                Valor do Pagamento *
+                Valor do pagamento *
               </label>
               <div class="relative">
                 <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">R$</span>
@@ -544,12 +544,12 @@ function getStatusBadge(status: string) {
 
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1">
-                Observacao (opcional)
+                Observação (opcional)
               </label>
               <textarea
                 v-model="pagamentoForm.observacao"
                 rows="3"
-                placeholder="Ex: Pagamento via transferencia bancaria"
+                placeholder="Ex: Pagamento via transferência bancária"
                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary resize-none"
               ></textarea>
             </div>
@@ -569,7 +569,7 @@ function getStatusBadge(status: string) {
               class="flex-1 py-2 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-lg transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
             >
               <Spinner v-if="pagamentoLoading" size="sm" />
-              <span v-else>Confirmar Pagamento</span>
+              <span v-else>Confirmar pagamento</span>
             </button>
           </div>
         </div>
@@ -600,10 +600,10 @@ function getStatusBadge(status: string) {
           </span>
         </div>
 
-        <!-- Informacoes -->
+        <!-- Informações -->
         <div class="bg-gray-50 rounded-lg p-4 space-y-3">
           <div class="flex justify-between">
-            <span class="text-sm text-gray-500">Numero</span>
+            <span class="text-sm text-gray-500">Número</span>
             <span class="text-sm font-medium text-gray-900">#{{ eventosStore.eventoAtual.fatura.numero }}</span>
           </div>
           <div class="flex justify-between">

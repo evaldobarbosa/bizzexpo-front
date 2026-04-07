@@ -46,7 +46,7 @@ const startScanner = async () => {
     isScanning.value = true
     errorMessage.value = null
   } catch {
-    errorMessage.value = 'Nao foi possivel acessar a camera. Verifique as permissoes.'
+    errorMessage.value = 'Não foi possível acessar a câmera. Verifique as permissões.'
     emit('error', errorMessage.value)
   }
 }
@@ -147,9 +147,9 @@ defineExpose({
       </div>
     </div>
 
-    <!-- Instrucao -->
+    <!-- Instrução -->
     <p v-if="isScanning && !errorMessage" class="text-center text-slate-500 text-sm mt-4">
-      Aponte a camera para o QR Code do participante
+      Aponte a câmera para o QR Code do participante
     </p>
   </div>
 </template>

@@ -81,10 +81,10 @@ function emitir() {
 
 <template>
   <div class="space-y-4">
-    <!-- Numero do cartao -->
+    <!-- Número do cartão -->
     <div>
       <label class="block text-sm font-medium text-on-surface-variant mb-2">
-        Numero do cartao
+        Número do cartão
       </label>
       <div class="relative">
         <Input
@@ -100,15 +100,15 @@ function emitir() {
       </div>
     </div>
 
-    <!-- Nome no cartao -->
+    <!-- Nome no cartão -->
     <div>
       <label class="block text-sm font-medium text-on-surface-variant mb-2">
-        Nome no cartao
+        Nome no cartão
       </label>
       <Input
         v-model="nome"
         @update:model-value="emitir"
-        placeholder="Como esta no cartao"
+        placeholder="Como está no cartão"
         :disabled="disabled"
         class="uppercase"
       />
@@ -141,10 +141,10 @@ function emitir() {
       </div>
     </div>
 
-    <!-- Indicador de seguranca -->
+    <!-- Indicador de segurança -->
     <div class="flex items-center gap-2 text-sm text-on-surface-variant">
       <span class="material-symbols-outlined text-lg text-primary">lock</span>
-      <span>Seus dados estao protegidos com criptografia</span>
+      <span>Seus dados estão protegidos com criptografia</span>
     </div>
   </div>
 </template>

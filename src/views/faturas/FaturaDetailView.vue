@@ -85,7 +85,7 @@ function handleVoltar() {
         </div>
 
         <Card>
-          <!-- Cabecalho -->
+          <!-- Cabeçalho -->
           <div class="flex items-start justify-between mb-6 pb-6 border-b border-gray-200">
             <div>
               <div class="flex items-center gap-3">
@@ -114,7 +114,7 @@ function handleVoltar() {
           <!-- Datas -->
           <div class="grid grid-cols-2 gap-4 mb-6">
             <div>
-              <p class="text-sm text-gray-500">Data de emissao</p>
+              <p class="text-sm text-gray-500">Data de emissão</p>
               <p class="font-medium text-gray-900">
                 {{ formatDate(faturasStore.faturaAtual.created_at) }}
               </p>
@@ -135,13 +135,13 @@ function handleVoltar() {
                 <thead class="bg-gray-50">
                   <tr>
                     <th class="text-left px-4 py-3 text-xs font-semibold text-gray-500 uppercase">
-                      Descricao
+                      Descrição
                     </th>
                     <th class="text-center px-4 py-3 text-xs font-semibold text-gray-500 uppercase">
                       Qtd
                     </th>
                     <th class="text-right px-4 py-3 text-xs font-semibold text-gray-500 uppercase">
-                      Preco Unit.
+                      Preço unit.
                     </th>
                     <th class="text-right px-4 py-3 text-xs font-semibold text-gray-500 uppercase">
                       Subtotal
@@ -180,7 +180,7 @@ function handleVoltar() {
             </div>
           </div>
 
-          <!-- Acoes -->
+          <!-- Ações -->
           <div v-if="podePagar" class="mt-8 pt-6 border-t border-gray-200">
             <Button class="w-full" size="lg" @click="handlePagar">
               Pagar Agora

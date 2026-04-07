@@ -72,7 +72,7 @@ function handleCancel() {
     </div>
 
     <div v-else class="max-w-2xl mx-auto">
-      <h1 class="text-2xl font-bold text-gray-900 mb-6">Editar Evento</h1>
+      <h1 class="text-2xl font-bold text-gray-900 mb-6">Editar evento</h1>
 
       <Card>
         <EventoForm
@@ -81,7 +81,7 @@ function handleCancel() {
           :errors="errors"
           :fatura-paga="faturaPaga"
           :is-edit="true"
-          submit-label="Salvar Alteracoes"
+          submit-label="Salvar alterações"
           @submit="handleSubmit"
           @cancel="handleCancel"
         />

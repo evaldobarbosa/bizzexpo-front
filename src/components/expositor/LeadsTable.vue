@@ -43,13 +43,13 @@ const paginas = computed(() => {
   const current = props.meta.current_page
   const total = props.meta.last_page
 
-  // Sempre mostra primeira pagina
+  // Sempre mostra primeira página
   if (current > 3) pages.push(1)
 
   // Mostra ... se houver gap
   if (current > 4) pages.push(-1)
 
-  // Paginas ao redor da atual
+  // Páginas ao redor da atual
   for (let i = Math.max(1, current - 2); i <= Math.min(total, current + 2); i++) {
     pages.push(i)
   }
@@ -57,7 +57,7 @@ const paginas = computed(() => {
   // Mostra ... se houver gap
   if (current < total - 3) pages.push(-1)
 
-  // Sempre mostra ultima pagina
+  // Sempre mostra última página
   if (current < total - 2) pages.push(total)
 
   return pages
@@ -133,7 +133,7 @@ const paginas = computed(() => {
       <p class="text-slate-500">Nenhum lead encontrado</p>
     </div>
 
-    <!-- Paginacao -->
+    <!-- Paginação -->
     <div v-if="meta && meta.last_page > 1" class="flex items-center justify-between mt-6 pt-4 border-t border-slate-200">
       <p class="text-sm text-slate-500">
         Mostrando {{ (meta.current_page - 1) * meta.per_page + 1 }} a
@@ -171,7 +171,7 @@ const paginas = computed(() => {
           @click="emit('paginar', meta.current_page + 1)"
           class="px-3 py-1.5 text-sm rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-100"
         >
-          Proximo
+          Próximo
         </button>
       </div>
     </div>

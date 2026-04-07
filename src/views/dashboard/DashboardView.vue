@@ -71,7 +71,7 @@ function getStatusBadge(status: string) {
 
     <!-- Conteudo -->
     <div v-else class="space-y-6">
-      <!-- Cards de Metricas -->
+      <!-- Cards de métricas -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- Total de Eventos -->
         <div class="bg-white rounded-xl border border-gray-200 p-6 flex items-center gap-4">
@@ -113,9 +113,9 @@ function getStatusBadge(status: string) {
         </div>
       </div>
 
-      <!-- Header Eventos com Botao -->
+      <!-- Header eventos com botão -->
       <div class="flex items-center justify-between">
-        <h2 class="text-lg font-semibold text-gray-900">Eventos Recentes</h2>
+        <h2 class="text-lg font-semibold text-gray-900">Eventos recentes</h2>
         <div class="flex items-center gap-3">
           <router-link to="/eventos" class="text-sm text-primary font-medium hover:underline">
             Ver todos
@@ -124,12 +124,12 @@ function getStatusBadge(status: string) {
             <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
             </svg>
-            Novo Evento
+            Novo evento
           </Button>
         </div>
       </div>
 
-      <!-- Tabela Eventos Recentes -->
+      <!-- Tabela eventos recentes -->
       <div class="bg-white rounded-xl border border-gray-200">
 
         <!-- Tabela -->
@@ -150,7 +150,7 @@ function getStatusBadge(status: string) {
                   Status
                 </th>
                 <th class="text-right px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                  Acao
+                  Ação
                 </th>
               </tr>
             </thead>

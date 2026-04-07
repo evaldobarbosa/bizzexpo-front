@@ -33,13 +33,13 @@ async function handleSubmit() {
   <AuthLayout>
     <!-- Card de Login -->
     <div class="w-full max-w-md bg-white rounded-xl shadow-xl p-8">
-      <!-- Titulo -->
+      <!-- Título -->
       <div class="text-center mb-8">
         <h1 class="text-2xl font-bold text-gray-900">Bem-vindo de volta</h1>
         <p class="text-gray-500 mt-2">Acesse sua conta para continuar</p>
       </div>
 
-      <!-- Formulario -->
+      <!-- Formulário -->
       <form @submit.prevent="handleSubmit" class="space-y-5">
         <!-- Erro geral -->
         <div v-if="generalError" class="p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm">
@@ -102,7 +102,7 @@ async function handleSubmit() {
           </RouterLink>
         </div>
 
-        <!-- Botao Entrar -->
+        <!-- Botão entrar -->
         <button
           type="submit"
           :disabled="loading"
@@ -120,7 +120,7 @@ async function handleSubmit() {
         <div class="flex-1 h-px bg-gray-200"></div>
       </div>
 
-      <!-- Botoes Sociais -->
+      <!-- Botões sociais -->
       <div class="flex gap-4">
         <button
           type="button"
@@ -148,7 +148,7 @@ async function handleSubmit() {
 
     <!-- Link para cadastro -->
     <p class="mt-6 text-center text-sm text-gray-600">
-      Nao tem uma conta?
+      Não tem uma conta?
       <RouterLink to="/register" class="text-primary font-semibold hover:underline ml-1">
         Cadastre-se
       </RouterLink>

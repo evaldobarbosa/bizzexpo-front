@@ -32,15 +32,15 @@ async function handleSubmit() {
 
 <template>
   <AuthLayout>
-    <!-- Titulo acima do card -->
+    <!-- Título acima do card -->
     <div class="text-center mb-6">
       <h1 class="text-2xl font-bold text-gray-900">Crie sua conta</h1>
-      <p class="text-gray-500 mt-2">Junte-se a nossa comunidade</p>
+      <p class="text-gray-500 mt-2">Junte-se à nossa comunidade</p>
     </div>
 
     <!-- Card de Cadastro -->
     <div class="w-full max-w-md bg-white rounded-xl shadow-xl p-8">
-      <!-- Formulario -->
+      <!-- Formulário -->
       <form @submit.prevent="handleSubmit" class="space-y-5">
         <!-- Erro geral -->
         <div v-if="generalError" class="p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm">
@@ -114,7 +114,7 @@ async function handleSubmit() {
           <span v-if="getError('password_confirmation')" class="text-red-500 text-xs mt-1">{{ getError('password_confirmation') }}</span>
         </div>
 
-        <!-- Botao Criar conta -->
+        <!-- Botão criar conta -->
         <button
           type="submit"
           :disabled="loading"
@@ -132,7 +132,7 @@ async function handleSubmit() {
         <div class="flex-1 h-px bg-gray-200"></div>
       </div>
 
-      <!-- Botoes Sociais -->
+      <!-- Botões sociais -->
       <div class="flex gap-4">
         <button
           type="button"
@@ -160,7 +160,7 @@ async function handleSubmit() {
 
     <!-- Link para login -->
     <p class="mt-6 text-center text-sm text-gray-600">
-      Ja tem uma conta?
+      Já tem uma conta?
       <RouterLink to="/login" class="text-primary font-semibold hover:underline ml-1">
         Entre
       </RouterLink>

@@ -40,13 +40,13 @@ onMounted(async () => {
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
           </svg>
         </div>
-        <h2 class="text-xl font-bold text-slate-900 mb-2">Evento nao encontrado</h2>
+        <h2 class="text-xl font-bold text-slate-900 mb-2">Evento não encontrado</h2>
         <p class="text-slate-600 mb-6">{{ store.error }}</p>
         <router-link
           to="/"
           class="inline-flex items-center justify-center bg-primary text-white h-11 px-6 rounded-lg font-medium"
         >
-          Voltar para o inicio
+          Voltar para o início
         </router-link>
       </div>
     </div>
@@ -96,13 +96,13 @@ onMounted(async () => {
             Garanta sua vaga!
           </h2>
           <p class="text-white/80 mb-8">
-            Faca sua inscricao agora e aproveite tudo que o {{ store.evento.nome }} tem a oferecer.
+            Faça sua inscrição agora e aproveite tudo que o {{ store.evento.nome }} tem a oferecer.
           </p>
           <router-link
             :to="{ name: 'evento-inscricao', params: { slug: store.evento.slug } }"
             class="inline-flex items-center justify-center bg-white text-primary h-14 px-10 rounded-xl font-bold text-lg hover:bg-slate-50 transition-colors"
           >
-            Fazer Inscricao
+            Fazer inscrição
           </router-link>
         </div>
       </section>

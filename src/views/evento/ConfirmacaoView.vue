@@ -14,7 +14,7 @@ const inscricoesStore = useInscricoesStore()
 const slug = route.params.slug as string
 
 onMounted(async () => {
-  // Carrega evento se ainda nao foi carregado
+  // Carrega evento se ainda não foi carregado
   if (!eventoStore.evento || eventoStore.evento.slug !== slug) {
     await eventoStore.fetchEvento(slug)
   }
@@ -31,7 +31,7 @@ onMounted(async () => {
       </div>
     </div>
 
-    <!-- Confirmacao -->
+    <!-- Confirmação -->
     <template v-else>
       <!-- Header -->
       <header class="bg-white border-b border-slate-200 py-4 px-4">
@@ -45,22 +45,22 @@ onMounted(async () => {
             </svg>
           </router-link>
           <div>
-            <h1 class="font-semibold text-slate-900">Confirmacao de Inscricao</h1>
+            <h1 class="font-semibold text-slate-900">Confirmação de inscrição</h1>
             <p v-if="eventoStore.evento" class="text-sm text-slate-500">{{ eventoStore.evento.nome }}</p>
           </div>
         </div>
       </header>
 
-      <!-- Conteudo -->
+      <!-- Conteúdo -->
       <main class="py-8 px-4">
         <div class="max-w-lg mx-auto">
-          <!-- QR Code e dados da inscricao -->
+          <!-- QR Code e dados da inscrição -->
           <QRCodeConfirmacao
             v-if="inscricoesStore.inscricaoAtual"
             :inscricao="inscricoesStore.inscricaoAtual"
           />
 
-          <!-- Acoes adicionais -->
+          <!-- Ações adicionais -->
           <div class="mt-6 flex flex-col items-center gap-4">
             <AdicionarCalendario v-if="eventoStore.evento" :evento="eventoStore.evento" />
 
@@ -68,7 +68,7 @@ onMounted(async () => {
               :to="{ name: 'evento-publico', params: { slug } }"
               class="text-primary hover:underline text-sm font-medium"
             >
-              Voltar para a pagina do evento
+              Voltar para a página do evento
             </router-link>
           </div>
         </div>

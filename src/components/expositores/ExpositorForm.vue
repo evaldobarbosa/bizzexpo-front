@@ -62,7 +62,7 @@ function getError(field: string): string | undefined {
         <Input
           id="nome_contato"
           v-model="form.nome_contato"
-          placeholder="Nome do responsavel"
+          placeholder="Nome do responsável"
           :error="getError('nome_contato')"
         />
       </FormField>
@@ -97,13 +97,13 @@ function getError(field: string): string | undefined {
       </FormField>
     </div>
 
-    <FormField label="Descricao" id="descricao" :error="getError('descricao')">
+    <FormField label="Descrição" id="descricao" :error="getError('descricao')">
       <textarea
         id="descricao"
         v-model="form.descricao"
         rows="3"
         class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors border-gray-300"
-        placeholder="Descricao da empresa"
+        placeholder="Descrição da empresa"
       />
     </FormField>
 

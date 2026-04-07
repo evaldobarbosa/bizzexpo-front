@@ -39,9 +39,9 @@ function getMetodoLabel(metodo: string) {
     case 'pix':
       return 'PIX'
     case 'credit_card':
-      return 'Cartao de Credito'
+      return 'Cartão de crédito'
     case 'debit_card':
-      return 'Cartao de Debito'
+      return 'Cartão de débito'
     case 'manual':
       return 'Pagamento Manual'
     default:
@@ -93,7 +93,7 @@ function handleVoltarDashboard() {
               </span>
             </div>
             <div class="flex justify-between">
-              <span class="text-gray-500">Metodo</span>
+              <span class="text-gray-500">Método</span>
               <span class="font-medium text-gray-900">
                 {{ getMetodoLabel(faturasStore.pagamentoAtual.metodo) }}
               </span>
@@ -112,7 +112,7 @@ function handleVoltarDashboard() {
               </span>
             </div>
             <div class="flex justify-between pt-4 border-t border-gray-200">
-              <span class="text-gray-500">ID da transacao</span>
+              <span class="text-gray-500">ID da transação</span>
               <span class="font-mono text-sm text-gray-600">
                 {{ faturasStore.pagamentoAtual.gateway_id ?? faturasStore.pagamentoAtual.id }}
               </span>
@@ -120,7 +120,7 @@ function handleVoltarDashboard() {
           </div>
         </div>
 
-        <!-- Acoes -->
+        <!-- Ações -->
         <div class="space-y-3">
           <Button class="w-full" @click="handleVoltarDashboard">
             Voltar ao Dashboard
