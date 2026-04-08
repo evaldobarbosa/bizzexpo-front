@@ -207,6 +207,43 @@ export interface Estande {
   qrcode: string
 }
 
+export interface Stand {
+  id: string
+  evento_id: string
+  nome: string
+  descricao?: string
+  localizacao?: string
+  largura?: number
+  profundidade?: number
+  preco: number
+  created_at?: string
+  updated_at?: string
+}
+
+export interface EspacoAtivacao {
+  id: string
+  evento_id: string
+  nome: string
+  descricao?: string
+  localizacao?: string
+  largura?: number
+  profundidade?: number
+  preco: number
+  created_at?: string
+  updated_at?: string
+}
+
+export interface CotaPatrocinio {
+  id: string
+  evento_id: string
+  nome: string
+  descricao?: string
+  preco: number
+  limite_patrocinadores?: number
+  created_at?: string
+  updated_at?: string
+}
+
 export interface Inscricao {
   id: string
   evento_id: string

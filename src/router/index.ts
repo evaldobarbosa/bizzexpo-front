@@ -137,6 +137,63 @@ const router = createRouter({
       component: () => import('@/views/categorias/CategoriaEditView.vue'),
       meta: { requiresAuth: true },
     },
+    // Stands
+    {
+      path: '/eventos/:eventoId/stands',
+      name: 'stands',
+      component: () => import('@/views/stands/StandsListView.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/eventos/:eventoId/stands/criar',
+      name: 'stand-criar',
+      component: () => import('@/views/stands/StandCreateView.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/eventos/:eventoId/stands/:id/editar',
+      name: 'stand-editar',
+      component: () => import('@/views/stands/StandEditView.vue'),
+      meta: { requiresAuth: true },
+    },
+    // Espacos de Ativacao
+    {
+      path: '/eventos/:eventoId/espacos-ativacao',
+      name: 'espacos-ativacao',
+      component: () => import('@/views/espacosAtivacao/EspacosAtivacaoListView.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/eventos/:eventoId/espacos-ativacao/criar',
+      name: 'espaco-ativacao-criar',
+      component: () => import('@/views/espacosAtivacao/EspacoAtivacaoCreateView.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/eventos/:eventoId/espacos-ativacao/:id/editar',
+      name: 'espaco-ativacao-editar',
+      component: () => import('@/views/espacosAtivacao/EspacoAtivacaoEditView.vue'),
+      meta: { requiresAuth: true },
+    },
+    // Cotas de Patrocinio
+    {
+      path: '/eventos/:eventoId/cotas-patrocinio',
+      name: 'cotas-patrocinio',
+      component: () => import('@/views/cotasPatrocinio/CotasPatrocinioListView.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/eventos/:eventoId/cotas-patrocinio/criar',
+      name: 'cota-patrocinio-criar',
+      component: () => import('@/views/cotasPatrocinio/CotaPatrocinioCreateView.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/eventos/:eventoId/cotas-patrocinio/:id/editar',
+      name: 'cota-patrocinio-editar',
+      component: () => import('@/views/cotasPatrocinio/CotaPatrocinioEditView.vue'),
+      meta: { requiresAuth: true },
+    },
     // Estandes
     {
       path: '/eventos/:eventoId/expositores/:expositorId/estandes',
