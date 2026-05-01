@@ -22,6 +22,9 @@ const { form, loading, errors, submit } = useForm({
   local: '',
   whatsapp_contato: '',
   plano: undefined as PlanoEvento | undefined,
+  banner: undefined as string | undefined,
+  og_image: undefined as string | undefined,
+  customizacao: undefined as Record<string, string | null> | undefined,
 })
 
 const faturaPaga = computed(() => {
@@ -44,6 +47,9 @@ watch(
       form.local = evento.local
       form.whatsapp_contato = evento.whatsapp_contato || ''
       form.plano = evento.plano
+      form.banner = evento.banner
+      form.og_image = evento.og_image
+      form.customizacao = evento.customizacao ?? undefined
     }
   },
   { immediate: true }
