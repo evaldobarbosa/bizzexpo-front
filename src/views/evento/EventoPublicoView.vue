@@ -38,10 +38,11 @@ function voltarParaEdicao() {
 }
 
 onMounted(async () => {
+  const preview = isPreviewMode.value
   await Promise.all([
-    store.fetchEvento(slug.value, isPreviewMode.value),
-    store.fetchExpositores(slug.value),
-    store.fetchTiposIngresso(slug.value),
+    store.fetchEvento(slug.value, preview),
+    store.fetchExpositores(slug.value, preview),
+    store.fetchTiposIngresso(slug.value, preview),
   ])
 })
 </script>

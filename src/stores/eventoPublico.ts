@@ -30,11 +30,12 @@ export const useEventoPublicoStore = defineStore('eventoPublico', () => {
     }
   }
 
-  async function fetchExpositores(slug: string) {
+  async function fetchExpositores(slug: string, preview: boolean = false) {
     loading.value = true
     error.value = null
     try {
-      const response = await api.get(`/evento/${slug}/expositores`)
+      const params = preview ? { preview: true } : {}
+      const response = await api.get(`/evento/${slug}/expositores`, { params })
       expositores.value = response.data.data
       return response.data.data
     } catch (err: any) {
@@ -61,11 +62,12 @@ export const useEventoPublicoStore = defineStore('eventoPublico', () => {
     }
   }
 
-  async function fetchTiposIngresso(slug: string) {
+  async function fetchTiposIngresso(slug: string, preview: boolean = false) {
     loading.value = true
     error.value = null
     try {
-      const response = await api.get(`/evento/${slug}/tipos-ingresso`)
+      const params = preview ? { preview: true } : {}
+      const response = await api.get(`/evento/${slug}/tipos-ingresso`, { params })
       tiposIngresso.value = response.data.data
       return response.data.data
     } catch (err: unknown) {
