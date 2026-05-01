@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useEventoPublicoStore } from '@/stores/eventoPublico'
 import HeroEvento from '@/components/evento/HeroEvento.vue'
 import SobreEvento from '@/components/evento/SobreEvento.vue'
@@ -12,9 +12,13 @@ import Spinner from '@/components/ui/Spinner.vue'
 import WhatsAppFAB from '@/components/ui/WhatsAppFAB.vue'
 
 const route = useRoute()
+const router = useRouter()
 const store = useEventoPublicoStore()
 
 const slug = computed(() => route.params.slug as string)
+
+// Detecta modo preview pela ancora #preview na URL
+const isPreviewMode = computed(() => route.hash === '#preview')
 
 // CSS Variables para cores customizadas do evento
 const cssVars = computed(() => {
@@ -27,9 +31,15 @@ const cssVars = computed(() => {
   }
 })
 
+function voltarParaEdicao() {
+  if (store.evento) {
+    router.push(`/eventos/${store.evento.id}/editar`)
+  }
+}
+
 onMounted(async () => {
   await Promise.all([
-    store.fetchEvento(slug.value),
+    store.fetchEvento(slug.value, isPreviewMode.value),
     store.fetchExpositores(slug.value),
     store.fetchTiposIngresso(slug.value),
   ])
@@ -68,11 +78,42 @@ onMounted(async () => {
     <!-- Evento carregado -->
     <template v-else-if="store.evento">
       <div :style="cssVars">
+        <!-- Barra de Preview -->
+        <div
+          v-if="store.isPreview"
+          class="fixed top-0 left-0 right-0 z-50 bg-amber-500 text-white py-2 px-4"
+        >
+          <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+              <span class="font-semibold">Modo Preview</span>
+              <span class="text-amber-100 text-sm hidden sm:inline">
+                - Esta página ainda não está publicada
+              </span>
+            </div>
+            <button
+              @click="voltarParaEdicao"
+              class="flex items-center gap-1 px-3 py-1 bg-amber-600 hover:bg-amber-700 rounded-lg text-sm font-medium transition-colors"
+            >
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+              Editar evento
+            </button>
+          </div>
+        </div>
+
         <!-- Hero -->
-        <HeroEvento :evento="store.evento" />
+        <HeroEvento :evento="store.evento" :class="{ 'mt-12': store.isPreview }" />
 
       <!-- Barra de acoes flutuante -->
-      <div class="sticky top-0 z-20 bg-white/95 backdrop-blur-sm border-b border-slate-200 py-3 px-4">
+      <div
+        class="sticky z-20 bg-white/95 backdrop-blur-sm border-b border-slate-200 py-3 px-4"
+        :class="store.isPreview ? 'top-12' : 'top-0'"
+      >
         <div class="max-w-7xl mx-auto flex items-center justify-between">
           <div class="flex items-center gap-4">
             <img
@@ -125,7 +166,7 @@ onMounted(async () => {
 
           <!-- Coluna lateral de tickets (desktop) - sticky -->
           <div class="hidden lg:block lg:w-80 lg:flex-shrink-0">
-            <div class="sticky top-[72px]">
+            <div class="sticky" :class="store.isPreview ? 'top-[120px]' : 'top-[72px]'">
               <TicketSelector
                 :tipos-ingresso="store.tiposIngresso"
                 :evento-slug="store.evento.slug"

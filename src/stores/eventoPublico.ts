@@ -10,13 +10,17 @@ export const useEventoPublicoStore = defineStore('eventoPublico', () => {
   const tiposIngresso = ref<TipoIngresso[]>([])
   const loading = ref(false)
   const error = ref<string | null>(null)
+  const isPreview = ref(false)
 
-  async function fetchEvento(slug: string) {
+  async function fetchEvento(slug: string, preview: boolean = false) {
     loading.value = true
     error.value = null
+    isPreview.value = false
     try {
-      const response = await api.get(`/evento/${slug}`)
+      const params = preview ? { preview: true } : {}
+      const response = await api.get(`/evento/${slug}`, { params })
       evento.value = response.data.data
+      isPreview.value = response.data.preview === true
       return response.data.data
     } catch (err: any) {
       error.value = err.response?.data?.message || 'Erro ao carregar evento'
@@ -88,6 +92,7 @@ export const useEventoPublicoStore = defineStore('eventoPublico', () => {
     tiposIngresso,
     loading,
     error,
+    isPreview,
     fetchEvento,
     fetchExpositores,
     fetchCategorias,
